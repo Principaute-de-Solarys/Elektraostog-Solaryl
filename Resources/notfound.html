@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erreur 404 : Page introuvable</title>
+</head>
+<body>
+    <h1>Erreur 404 : Page introuvable</h1>
+    <p id="page">Oupsi, même ce texte ne marche pas !</p>
+    <script>
+        function getCurrentURL () {
+            return window.location.href
+        }
+        const url = getCurrentURL()
+        document.getElementById("page").textContent=`Eh ouais, la page ${url} n'existe pas ou n'a pas été trouvée... Si tu as fait une faute, corrige là !`
+    </script>
+</body>
+</html>
