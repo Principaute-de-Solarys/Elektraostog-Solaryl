@@ -17,6 +17,14 @@ Public Class ElektraostogSolaryl
         Dim appVersion As String = Application.ProductVersion
         settings.UserAgent = $"Elektraostog Solaryl/{appVersion} Mozilla/5.0 ({osInfo}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{Cef.ChromiumVersion} Safari/537.36"
         settings.WindowlessRenderingEnabled = 0
+        settings.RegisterScheme(New CefCustomScheme() With {
+            .SchemeName = "solarys",
+            .SchemeHandlerFactory = New SolarysSchemeHandlerFactory,
+            .IsSecure = True,
+            .IsStandard = True,
+            .IsLocal = True,
+            .IsDisplayIsolated = False
+        })
         Cef.Initialize(settings)
         AjouterNouvelOnglet()
 
@@ -300,4 +308,32 @@ Public Class ElektraostogSolaryl
 
         MyBase.WndProc(m)
     End Sub
+
+    Public Class SolarysSchemeHandlerFactory
+        Implements ISchemeHandlerFactory
+        Public Function Create(browser As IBrowser, frame As IFrame, schemeName As String, request As IRequest) As IResourceHandler Implements ISchemeHandlerFactory.Create
+            If schemeName = "solarys" Then
+                Return ResourceHandler.FromString(My.Resources.notfound)
+            End If
+            Return New ResourceHandler()
+        End Function
+        Private Function GetMimeType(extension As String) As String
+            Select Case extension.ToLower()
+                Case ".html", ".htm"
+                    Return "text/html"
+                Case ".js"
+                    Return "application/javascript"
+                Case ".css"
+                    Return "text/css"
+                Case ".png"
+                    Return "image/png"
+                Case ".jpg", ".jpeg"
+                    Return "image/jpeg"
+                Case ".gif"
+                    Return "image/gif"
+                Case Else
+                    Return "application/octet-stream"
+            End Select
+        End Function
+    End Class
 End Class

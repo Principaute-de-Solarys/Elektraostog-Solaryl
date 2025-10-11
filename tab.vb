@@ -84,7 +84,7 @@ Public Class tab
     Private Sub CheckLink()
         If ToolStripTextBox1.Text = "" Then
             MsgBox("Veuillez mettre une URL")
-        ElseIf Regex.IsMatch(ToolStripTextBox1.Text, patt) OrElse ToolStripTextBox1.Text.StartsWith("chrome://") Then
+        ElseIf Regex.IsMatch(ToolStripTextBox1.Text, patt) OrElse ToolStripTextBox1.Text.StartsWith("chrome://") OrElse ToolStripTextBox1.Text.StartsWith("solarys://") Then
             ChromiumWebBrowser1.Load(ToolStripTextBox1.Text)
         Else
             ChromiumWebBrowser1.Load("https://www.google.com/search?q=" & ToolStripTextBox1.Text)
