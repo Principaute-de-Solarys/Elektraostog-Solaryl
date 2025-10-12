@@ -31,6 +31,7 @@ Partial Class tab
         Me.RafraîchirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NouvellePageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FermerLaPageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AfficherLesDevToolsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.RevenirSurSolarysToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ServeurDiscordToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -43,6 +44,7 @@ Partial Class tab
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.ChromiumWebBrowser1 = New CefSharp.WinForms.ChromiumWebBrowser()
+        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -63,7 +65,7 @@ Partial Class tab
         '
         'PageTSSB
         '
-        Me.PageTSSB.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RevenirEnArrièreToolStripMenuItem, Me.RevenirEnAvantToolStripMenuItem, Me.RafraîchirToolStripMenuItem, Me.NouvellePageToolStripMenuItem, Me.FermerLaPageToolStripMenuItem, Me.ToolStripSeparator1, Me.RevenirSurSolarysToolStripMenuItem, Me.ParamètresToolStripMenuItem, Me.MettreÀJourToolStripMenuItem})
+        Me.PageTSSB.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RevenirEnArrièreToolStripMenuItem, Me.RevenirEnAvantToolStripMenuItem, Me.RafraîchirToolStripMenuItem, Me.NouvellePageToolStripMenuItem, Me.FermerLaPageToolStripMenuItem, Me.AfficherLesDevToolsToolStripMenuItem, Me.ToolStripSeparator1, Me.RevenirSurSolarysToolStripMenuItem, Me.ParamètresToolStripMenuItem, Me.MettreÀJourToolStripMenuItem})
         Me.PageTSSB.Image = CType(resources.GetObject("PageTSSB.Image"), System.Drawing.Image)
         Me.PageTSSB.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.PageTSSB.Name = "PageTSSB"
@@ -74,7 +76,7 @@ Partial Class tab
         '
         Me.RevenirEnArrièreToolStripMenuItem.Name = "RevenirEnArrièreToolStripMenuItem"
         Me.RevenirEnArrièreToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Z), System.Windows.Forms.Keys)
-        Me.RevenirEnArrièreToolStripMenuItem.Size = New System.Drawing.Size(230, 22)
+        Me.RevenirEnArrièreToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
         Me.RevenirEnArrièreToolStripMenuItem.Text = "Revenir en arrière"
         '
         'RevenirEnAvantToolStripMenuItem
@@ -82,65 +84,73 @@ Partial Class tab
         Me.RevenirEnAvantToolStripMenuItem.Name = "RevenirEnAvantToolStripMenuItem"
         Me.RevenirEnAvantToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
             Or System.Windows.Forms.Keys.Z), System.Windows.Forms.Keys)
-        Me.RevenirEnAvantToolStripMenuItem.Size = New System.Drawing.Size(230, 22)
+        Me.RevenirEnAvantToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
         Me.RevenirEnAvantToolStripMenuItem.Text = "Revenir en avant"
         '
         'RafraîchirToolStripMenuItem
         '
         Me.RafraîchirToolStripMenuItem.Name = "RafraîchirToolStripMenuItem"
-        Me.RafraîchirToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5
-        Me.RafraîchirToolStripMenuItem.Size = New System.Drawing.Size(230, 22)
+        Me.RafraîchirToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
+        Me.RafraîchirToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
         Me.RafraîchirToolStripMenuItem.Text = "Rafraîchir"
         '
         'NouvellePageToolStripMenuItem
         '
         Me.NouvellePageToolStripMenuItem.Name = "NouvellePageToolStripMenuItem"
         Me.NouvellePageToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
-        Me.NouvellePageToolStripMenuItem.Size = New System.Drawing.Size(230, 22)
+        Me.NouvellePageToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
         Me.NouvellePageToolStripMenuItem.Text = "Nouvelle page"
         '
         'FermerLaPageToolStripMenuItem
         '
         Me.FermerLaPageToolStripMenuItem.Name = "FermerLaPageToolStripMenuItem"
         Me.FermerLaPageToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.E), System.Windows.Forms.Keys)
-        Me.FermerLaPageToolStripMenuItem.Size = New System.Drawing.Size(230, 22)
+        Me.FermerLaPageToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
         Me.FermerLaPageToolStripMenuItem.Text = "Fermer la page"
+        '
+        'AfficherLesDevToolsToolStripMenuItem
+        '
+        Me.AfficherLesDevToolsToolStripMenuItem.Name = "AfficherLesDevToolsToolStripMenuItem"
+        Me.AfficherLesDevToolsToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
+            Or System.Windows.Forms.Keys.I), System.Windows.Forms.Keys)
+        Me.AfficherLesDevToolsToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
+        Me.AfficherLesDevToolsToolStripMenuItem.Text = "Afficher les DevTools"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(227, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(246, 6)
         '
         'RevenirSurSolarysToolStripMenuItem
         '
         Me.RevenirSurSolarysToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ServeurDiscordToolStripMenuItem, Me.SiteToolStripMenuItem})
         Me.RevenirSurSolarysToolStripMenuItem.Name = "RevenirSurSolarysToolStripMenuItem"
-        Me.RevenirSurSolarysToolStripMenuItem.Size = New System.Drawing.Size(230, 22)
+        Me.RevenirSurSolarysToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
         Me.RevenirSurSolarysToolStripMenuItem.Text = "Revenir sur Solarys"
         '
         'ServeurDiscordToolStripMenuItem
         '
         Me.ServeurDiscordToolStripMenuItem.Name = "ServeurDiscordToolStripMenuItem"
-        Me.ServeurDiscordToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ServeurDiscordToolStripMenuItem.Size = New System.Drawing.Size(156, 22)
         Me.ServeurDiscordToolStripMenuItem.Text = "Serveur Discord"
         '
         'SiteToolStripMenuItem
         '
         Me.SiteToolStripMenuItem.Name = "SiteToolStripMenuItem"
-        Me.SiteToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SiteToolStripMenuItem.Size = New System.Drawing.Size(156, 22)
         Me.SiteToolStripMenuItem.Text = "Site"
         '
         'ParamètresToolStripMenuItem
         '
         Me.ParamètresToolStripMenuItem.Name = "ParamètresToolStripMenuItem"
         Me.ParamètresToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.I), System.Windows.Forms.Keys)
-        Me.ParamètresToolStripMenuItem.Size = New System.Drawing.Size(230, 22)
+        Me.ParamètresToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
         Me.ParamètresToolStripMenuItem.Text = "Paramètres"
         '
         'MettreÀJourToolStripMenuItem
         '
         Me.MettreÀJourToolStripMenuItem.Name = "MettreÀJourToolStripMenuItem"
-        Me.MettreÀJourToolStripMenuItem.Size = New System.Drawing.Size(230, 22)
+        Me.MettreÀJourToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
         Me.MettreÀJourToolStripMenuItem.Text = "Mettre à jour"
         '
         'ToolStripSeparator2
@@ -178,16 +188,25 @@ Partial Class tab
         'ChromiumWebBrowser1
         '
         Me.ChromiumWebBrowser1.ActivateBrowserOnCreation = False
-        Me.ChromiumWebBrowser1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ChromiumWebBrowser1.Dock = System.Windows.Forms.DockStyle.Left
         Me.ChromiumWebBrowser1.Location = New System.Drawing.Point(0, 31)
         Me.ChromiumWebBrowser1.Name = "ChromiumWebBrowser1"
-        Me.ChromiumWebBrowser1.Size = New System.Drawing.Size(941, 534)
+        Me.ChromiumWebBrowser1.Size = New System.Drawing.Size(487, 534)
         Me.ChromiumWebBrowser1.TabIndex = 1
+        '
+        'Panel1
+        '
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel1.Location = New System.Drawing.Point(741, 31)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(200, 534)
+        Me.Panel1.TabIndex = 2
         '
         'tab
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.ChromiumWebBrowser1)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Name = "tab"
@@ -218,4 +237,6 @@ Partial Class tab
     Friend WithEvents ServeurDiscordToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SiteToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ChromiumWebBrowser1 As CefSharp.WinForms.ChromiumWebBrowser
+    Friend WithEvents AfficherLesDevToolsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents Panel1 As Panel
 End Class

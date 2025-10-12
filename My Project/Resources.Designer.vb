@@ -116,7 +116,7 @@ Namespace My.Resources
         '''            return window.location.href
         '''        }
         '''        const url = getCurrentURL()
-        '''        document.getElementById(&quot;page&quot;).textContent=`Eh [le reste de la chaîne a été tronqué]&quot;;.
+        '''        document.getElementById(&quot;page&quot;).textContent=`La [le reste de la chaîne a été tronqué]&quot;;.
         '''</summary>
         Friend ReadOnly Property notfound() As String
             Get
@@ -141,6 +141,29 @@ Namespace My.Resources
             Get
                 Dim obj As Object = ResourceManager.GetObject("page_sombre", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Recherche une chaîne localisée semblable à &lt;!DOCTYPE html&gt;
+        '''&lt;html lang=&quot;fr&quot;&gt;
+        '''&lt;head&gt;
+        '''    &lt;meta charset=&quot;UTF-8&quot;&gt;
+        '''    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+        '''    &lt;title&gt;Paramètres&lt;/title&gt;
+        '''&lt;/head&gt;
+        '''&lt;body&gt;
+        '''    &lt;h1&gt;Paramètres&lt;/h1&gt;
+        '''    &lt;p&gt;Alors normalement ça s&apos;affiche, mais c&apos;est tout !&lt;/p&gt;
+        '''    &lt;script&gt;
+        '''        
+        '''    &lt;/script&gt;
+        '''&lt;/body&gt;
+        '''&lt;/html&gt;.
+        '''</summary>
+        Friend ReadOnly Property settings() As String
+            Get
+                Return ResourceManager.GetString("settings", resourceCulture)
             End Get
         End Property
         

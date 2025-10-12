@@ -3,17 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Erreur 404 : Page introuvable</title>
+    <title>Erreur 404 - Page introuvable</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #0f056b, #0044ff);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        p {
+            font-size: 1.1rem;
+            max-width: 500px;
+            line-height: 1.5;
+            margin: 10px 20px;
+        }
+
+        .url {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-family: monospace;
+            word-break: break-all;
+        }
+
+        button {
+            margin-top: 25px;
+            background: #fff;
+            color: #333;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #f1f1f1;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            position: absolute;
+            bottom: 15px;
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
-    <h1>Erreur 404 : Page introuvable</h1>
-    <p id="page">Oupsi, même ce texte ne marche pas !</p>
+    <h1>Erreur 404</h1>
+    <p>La page demandée n'existe pas ou a été déplacée.</p>
+    <p>URL : <span id="page" class="url"></span></p>
+    <button onclick="window.history.back()">Retour à la page précédente</button>
+    <footer>Elektraostog Solaryl</footer>
+
     <script>
-        function getCurrentURL () {
-            return window.location.href
-        }
-        const url = getCurrentURL()
-        document.getElementById("page").textContent=`Eh ouais, la page ${url} n'existe pas ou n'a pas été trouvée... Si tu as fait une faute, corrige là !`
+        document.getElementById("page").textContent = window.location.href
     </script>
 </body>
 </html>

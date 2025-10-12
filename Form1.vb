@@ -5,8 +5,6 @@ Imports CefSharp.Callback
 Imports CefSharp.WinForms
 
 Public Class ElektraostogSolaryl
-    Public TabContentMap As New Dictionary(Of TabPage, Control)
-
     Private Sub ElektraostogSolaryl_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim settings As New CefSettings
         settings.RemoteDebuggingPort = 8080
@@ -48,43 +46,6 @@ Public Class ElektraostogSolaryl
         Me.SetStyle(ControlStyles.ResizeRedraw, True)
     End Sub
 
-    Private Function GetOSInfo() As String
-        Dim os As OperatingSystem = Environment.OSVersion
-        Dim osName As String
-
-        Select Case os.Platform
-            Case PlatformID.Win32NT
-                Select Case os.Version.Major
-                    Case 10
-                        osName = "Windows NT 10.0; Win64; x64"
-                    Case 6
-                        Select Case os.Version.Minor
-                            Case 3
-                                osName = "Windows NT 6.3; Win64; x64" ' Windows 8.1
-                            Case 2
-                                osName = "Windows NT 6.2; Win64; x64" ' Windows 8
-                            Case 1
-                                osName = "Windows NT 6.1; Win64; x64" ' Windows 7
-                            Case Else
-                                osName = "Windows NT 6.x; Win64; x64"
-                        End Select
-                    Case Else
-                        osName = "Windows NT; Win64; x64"
-                End Select
-
-            Case PlatformID.Unix
-                osName = "X11; Linux x86_64"
-
-            Case PlatformID.MacOSX
-                osName = "Macintosh; Intel Mac OS X 10_15_7"
-
-            Case Else
-                osName = "Unknown OS"
-        End Select
-
-        Return osName
-    End Function
-
     Private Sub TabControl1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TabControl1.SelectedIndexChanged
         If TabControl1.SelectedTab IsNot Nothing AndAlso TabContentMap.ContainsKey(TabControl1.SelectedTab) Then
             Panel2.Controls.Clear()
@@ -94,7 +55,10 @@ Public Class ElektraostogSolaryl
         End If
     End Sub
 
-    Private Sub AjouterNouvelOnglet(Optional targetUrl As String = "https://google.com")
+    Private Sub AjouterNouvelOnglet(Optional targetUrl As String = "Défini pas ici avec My.Settings.homepage")
+        If targetUrl = "Défini pas ici avec My.Settings.homepage" Then
+            targetUrl = My.Settings.homepage
+        End If
         Dim tab1 As New tab
         With tab1
             .Dock = DockStyle.Fill
@@ -108,7 +72,6 @@ Public Class ElektraostogSolaryl
         TabControl1.TabPages.Add(newTab)
         TabControl1.SelectedTab = newTab
     End Sub
-
 
     Private Sub UpdateClock_Tick(sender As Object, e As EventArgs) Handles UpdateClock.Tick
         For Each pagee As KeyValuePair(Of TabPage, Control) In TabContentMap
@@ -308,32 +271,4 @@ Public Class ElektraostogSolaryl
 
         MyBase.WndProc(m)
     End Sub
-
-    Public Class SolarysSchemeHandlerFactory
-        Implements ISchemeHandlerFactory
-        Public Function Create(browser As IBrowser, frame As IFrame, schemeName As String, request As IRequest) As IResourceHandler Implements ISchemeHandlerFactory.Create
-            If schemeName = "solarys" Then
-                Return ResourceHandler.FromString(My.Resources.notfound)
-            End If
-            Return New ResourceHandler()
-        End Function
-        Private Function GetMimeType(extension As String) As String
-            Select Case extension.ToLower()
-                Case ".html", ".htm"
-                    Return "text/html"
-                Case ".js"
-                    Return "application/javascript"
-                Case ".css"
-                    Return "text/css"
-                Case ".png"
-                    Return "image/png"
-                Case ".jpg", ".jpeg"
-                    Return "image/jpeg"
-                Case ".gif"
-                    Return "image/gif"
-                Case Else
-                    Return "application/octet-stream"
-            End Select
-        End Function
-    End Class
 End Class
