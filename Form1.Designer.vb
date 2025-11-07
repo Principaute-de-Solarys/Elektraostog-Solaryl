@@ -49,7 +49,7 @@ Partial Class ElektraostogSolaryl
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.Padding = New System.Drawing.Point(0, 0)
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(710, 30)
+        Me.TabControl1.Size = New System.Drawing.Size(1110, 30)
         Me.TabControl1.TabIndex = 0
         '
         'UpdateClock
@@ -61,7 +61,7 @@ Partial Class ElektraostogSolaryl
         Me.PictureBox3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PictureBox3.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox3.Image = Global.Elektraostog_Solaryl.My.Resources.Resources.minimize
-        Me.PictureBox3.Location = New System.Drawing.Point(710, 0)
+        Me.PictureBox3.Location = New System.Drawing.Point(1110, 0)
         Me.PictureBox3.Name = "PictureBox3"
         Me.PictureBox3.Size = New System.Drawing.Size(30, 30)
         Me.PictureBox3.TabIndex = 3
@@ -72,7 +72,7 @@ Partial Class ElektraostogSolaryl
         Me.PictureBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PictureBox2.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox2.Image = Global.Elektraostog_Solaryl.My.Resources.Resources.Max
-        Me.PictureBox2.Location = New System.Drawing.Point(740, 0)
+        Me.PictureBox2.Location = New System.Drawing.Point(1140, 0)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(30, 30)
         Me.PictureBox2.TabIndex = 2
@@ -83,7 +83,7 @@ Partial Class ElektraostogSolaryl
         Me.PictureBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PictureBox1.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox1.Image = Global.Elektraostog_Solaryl.My.Resources.Resources._Exit
-        Me.PictureBox1.Location = New System.Drawing.Point(770, 0)
+        Me.PictureBox1.Location = New System.Drawing.Point(1170, 0)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(30, 30)
         Me.PictureBox1.TabIndex = 1
@@ -98,7 +98,7 @@ Partial Class ElektraostogSolaryl
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(800, 30)
+        Me.Panel1.Size = New System.Drawing.Size(1200, 30)
         Me.Panel1.TabIndex = 4
         '
         'Panel2
@@ -106,7 +106,7 @@ Partial Class ElektraostogSolaryl
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(0, 30)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(800, 420)
+        Me.Panel2.Size = New System.Drawing.Size(1200, 870)
         Me.Panel2.TabIndex = 5
         Me.Panel2.Tag = "Panel2"
         '
@@ -115,11 +115,12 @@ Partial Class ElektraostogSolaryl
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(45, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(1200, 900)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MinimumSize = New System.Drawing.Size(800, 450)
         Me.Name = "ElektraostogSolaryl"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Elektraostog Solaryl"

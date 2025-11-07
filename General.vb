@@ -1,23 +1,33 @@
-﻿Imports CefSharp
+﻿Imports System.IO
+Imports System.Net
+Imports CefSharp
 Imports Elektraostog_Solaryl.tab
 
 Public Module General
     Public TabContentMap As New Dictionary(Of TabPage, Control)
+    Public TextColor As Color = If(My.Settings.darkmode, Color.FromArgb(200, 200, 205), Color.Black)
+    Public TextSelectedColor As Color = Color.Black
+    Public _BackColor As Color = If(My.Settings.darkmode, Color.FromArgb(40, 40, 45), Color.FromArgb(240, 240, 240))
+    Public BackSelectedColor As Color = Color.FromArgb(179, 215, 243)
+    Public ButtonSelectedColor As Color = If(My.Settings.darkmode, Color.DimGray, Color.LightGray)
+    Public XButtonSelectedColor As Color = If(My.Settings.darkmode, Color.FromArgb(206, 86, 86), Color.Red)
+    Public TextBoxBackColor As Color = If(My.Settings.darkmode, Color.FromArgb(51, 51, 57), Color.White)
+    Public TabBackColor As Color = If(My.Settings.darkmode, Color.FromArgb(40, 40, 45), Color.LightGray)
 
     Public Class TSRenderer
         Inherits ToolStripProfessionalRenderer
 
-        Private topLevelNormalBack As Color = Color.FromArgb(40, 40, 45)
-        Private topLevelHoverBack As Color = Color.LightBlue
-        Private topLevelNormalText As Color = Color.FromArgb(200, 200, 205)
-        Private topLevelHoverText As Color = Color.Black
+        Private topLevelNormalBack As Color = _BackColor
+        Private topLevelHoverBack As Color = BackSelectedColor
+        Private topLevelNormalText As Color = TextColor
+        Private topLevelHoverText As Color = TextSelectedColor
 
-        Private dropDownNormalBack As Color = Color.FromArgb(40, 40, 45)
-        Private dropDownHoverBack As Color = Color.LightBlue
-        Private dropDownNormalText As Color = Color.FromArgb(200, 200, 205)
-        Private dropDownSelectedText As Color = Color.Black
+        Private dropDownNormalBack As Color = _BackColor
+        Private dropDownHoverBack As Color = BackSelectedColor
+        Private dropDownNormalText As Color = TextColor
+        Private dropDownSelectedText As Color = TextSelectedColor
 
-        Private separatorColor As Color = Color.FromArgb(200, 200, 205)
+        Private separatorColor As Color = TextColor
 
         Protected Overrides Sub OnRenderMenuItemBackground(ByVal e As ToolStripItemRenderEventArgs)
             Dim rect As New Rectangle(Point.Empty, e.Item.Size)
@@ -77,18 +87,38 @@ Public Module General
             End Using
         End Sub
     End Class
+
+    Public curTab As tab
+
     Public Class ParamManager
         Public Function getSettings() As Object
             Return New With {
                 .darkmode = My.Settings.darkmode,
-                .homepage = My.Settings.homepage
+                .homepage = My.Settings.homepage,
+                .searchengine = My.Settings.searchengine
             }
         End Function
 
-        Public Sub saveSettings(darkmode As Boolean, homepage As String)
+        Public Sub saveSettings(darkmode As Boolean, homepage As String, searchengine As String)
             My.Settings.darkmode = darkmode
             My.Settings.homepage = homepage
+            My.Settings.searchengine = searchengine
             My.Settings.Save()
+        End Sub
+    End Class
+
+    Public Class UpdateManager
+        Public Function getVer() As Object
+            Dim r = CheckUpdate(verr)
+            Return New With {
+                .ver = verr,
+                .onlinever = r.Item2,
+                .isNeeded = r.Item1
+            }
+        End Function
+
+        Public Sub goUpdate()
+            curTab.AjouterNouvelOnglet("https://github.com/Principaute-de-Solarys/Elektraostog-Solaryl")
         End Sub
     End Class
 
@@ -98,6 +128,10 @@ Public Module General
             If schemeName = "solarys" Then
                 If request.Url.StartsWith("solarys://settings/") Then
                     Return ResourceHandler.FromString(My.Resources.settings)
+                ElseIf request.Url.StartsWith("solarys://about/") Then
+                    Return ResourceHandler.FromString(My.Resources.about)
+                ElseIf request.Url.StartsWith("solarys://update/") Then
+                    Return ResourceHandler.FromString(My.Resources.update)
                 Else
                     Return ResourceHandler.FromString(My.Resources.notfound)
                 End If
@@ -243,5 +277,22 @@ Public Module General
         End Select
 
         Return osName
+    End Function
+
+    Dim verr As String = My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & "." & My.Application.Info.Version.Build & "." & My.Application.Info.Version.Revision
+
+    Public Function CheckUpdate(localVer As String)
+        Dim web As HttpWebRequest = HttpWebRequest.Create("https://github.com/Principaute-de-Solarys/Elektraostog-Solaryl/raw/refs/heads/master/ver")
+        web.Timeout = 10000
+        web.Method = "GET"
+        Dim reponse As HttpWebResponse = web.GetResponse()
+        Dim reader As New StreamReader(reponse.GetResponseStream())
+        Dim page As String = reader.ReadToEnd
+        Dim onlinever As String = page.Substring(0, 7)
+        Dim isNeeded As Boolean = False
+        If Not onlinever = localVer Then
+            isNeeded = True
+        End If
+        Return (isNeeded, onlinever)
     End Function
 End Module

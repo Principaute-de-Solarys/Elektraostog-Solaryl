@@ -71,11 +71,54 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Recherche une chaîne localisée semblable à &lt;!DOCTYPE html&gt;
+        '''&lt;html lang=&quot;fr&quot;&gt;
+        '''&lt;head&gt;
+        '''    &lt;meta charset=&quot;UTF-8&quot;&gt;
+        '''    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+        '''    &lt;title&gt;À propos d&apos;Elektraostog Solaryl&lt;/title&gt;
+        '''    &lt;style&gt;
+        '''        body {
+        '''            font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
+        '''            background: linear-gradient(135deg, #0f056b, #0044ff);
+        '''            background-attachment: fixed;
+        '''            color: #ffffff;
+        '''            display: flex;
+        '''            flex-direction: column;
+        '''            align-item [le reste de la chaîne a été tronqué]&quot;;.
+        '''</summary>
+        Friend ReadOnly Property about() As String
+            Get
+                Return ResourceManager.GetString("about", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property Exit_clair() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Exit_clair", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
         '''</summary>
         Friend ReadOnly Property Max() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Max", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property Max_clair() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Max_clair", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -93,9 +136,29 @@ Namespace My.Resources
         '''<summary>
         '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property Min_clair() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Min_clair", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property minimize() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("minimize", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property Minn_clair() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Minn_clair", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -106,17 +169,16 @@ Namespace My.Resources
         '''&lt;head&gt;
         '''    &lt;meta charset=&quot;UTF-8&quot;&gt;
         '''    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-        '''    &lt;title&gt;Erreur 404 : Page introuvable&lt;/title&gt;
-        '''&lt;/head&gt;
-        '''&lt;body&gt;
-        '''    &lt;h1&gt;Erreur 404 : Page introuvable&lt;/h1&gt;
-        '''    &lt;p id=&quot;page&quot;&gt;Oupsi, même ce texte ne marche pas !&lt;/p&gt;
-        '''    &lt;script&gt;
-        '''        function getCurrentURL () {
-        '''            return window.location.href
-        '''        }
-        '''        const url = getCurrentURL()
-        '''        document.getElementById(&quot;page&quot;).textContent=`La [le reste de la chaîne a été tronqué]&quot;;.
+        '''    &lt;title&gt;Erreur 404 - Page introuvable&lt;/title&gt;
+        '''    &lt;style&gt;
+        '''        body {
+        '''            font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
+        '''            background: linear-gradient(135deg, #0f056b, #0044ff);
+        '''            background-attachment: fixed;
+        '''            color: #ffffff;
+        '''            display: flex;
+        '''            flex-direction: column;
+        '''            align-items: [le reste de la chaîne a été tronqué]&quot;;.
         '''</summary>
         Friend ReadOnly Property notfound() As String
             Get
@@ -150,20 +212,43 @@ Namespace My.Resources
         '''&lt;head&gt;
         '''    &lt;meta charset=&quot;UTF-8&quot;&gt;
         '''    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-        '''    &lt;title&gt;Paramètres&lt;/title&gt;
-        '''&lt;/head&gt;
-        '''&lt;body&gt;
-        '''    &lt;h1&gt;Paramètres&lt;/h1&gt;
-        '''    &lt;p&gt;Alors normalement ça s&apos;affiche, mais c&apos;est tout !&lt;/p&gt;
-        '''    &lt;script&gt;
-        '''        
-        '''    &lt;/script&gt;
-        '''&lt;/body&gt;
-        '''&lt;/html&gt;.
+        '''    &lt;title&gt;Paramètres du navigateur&lt;/title&gt;
+        '''    &lt;style&gt;
+        '''        body {
+        '''            font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
+        '''            background: linear-gradient(135deg, #0f056b, #0044ff);
+        '''            background-attachment: fixed;
+        '''            color: #ffffff;
+        '''            display: flex;
+        '''            flex-direction: column;
+        '''            align-items: cent [le reste de la chaîne a été tronqué]&quot;;.
         '''</summary>
         Friend ReadOnly Property settings() As String
             Get
                 Return ResourceManager.GetString("settings", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Recherche une chaîne localisée semblable à &lt;!DOCTYPE html&gt;
+        '''&lt;html lang=&quot;fr&quot;&gt;
+        '''&lt;head&gt;
+        '''    &lt;meta charset=&quot;UTF-8&quot;&gt;
+        '''    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+        '''    &lt;title&gt;Mise à jour du navigateur&lt;/title&gt;
+        '''    &lt;style&gt;
+        '''        body {
+        '''            font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
+        '''            background: linear-gradient(135deg, #0f056b, #0044ff);
+        '''            background-attachment: fixed;
+        '''            color: #ffffff;
+        '''            display: flex;
+        '''            flex-direction: column;
+        '''            align-items: cen [le reste de la chaîne a été tronqué]&quot;;.
+        '''</summary>
+        Friend ReadOnly Property update() As String
+            Get
+                Return ResourceManager.GetString("update", resourceCulture)
             End Get
         End Property
         

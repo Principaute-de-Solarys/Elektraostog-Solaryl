@@ -6,6 +6,12 @@ Imports CefSharp.WinForms
 
 Public Class ElektraostogSolaryl
     Private Sub ElektraostogSolaryl_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        PictureBox1.BackColor = _BackColor
+        PictureBox1.Image = If(My.Settings.darkmode, My.Resources._Exit, My.Resources.Exit_clair)
+        PictureBox2.BackColor = _BackColor
+        PictureBox2.Image = If(My.Settings.darkmode, My.Resources.Max, My.Resources.Max_clair)
+        PictureBox3.BackColor = _BackColor
+        PictureBox3.Image = If(My.Settings.darkmode, My.Resources.minimize, My.Resources.Minn_clair)
         Dim settings As New CefSettings
         settings.RemoteDebuggingPort = 8080
         settings.Locale = "fr-FR"
@@ -41,6 +47,7 @@ Public Class ElektraostogSolaryl
             Dim content As Control = TabContentMap(TabControl1.SelectedTab)
             Panel2.Controls.Add(content)
             content.Dock = DockStyle.Fill
+            curTab = content
         End If
         Me.DoubleBuffered = True
         Me.SetStyle(ControlStyles.ResizeRedraw, True)
@@ -52,6 +59,7 @@ Public Class ElektraostogSolaryl
             Dim content As Control = TabContentMap(TabControl1.SelectedTab)
             Panel2.Controls.Add(content)
             content.Dock = DockStyle.Fill
+            curTab = content
         End If
     End Sub
 
@@ -129,9 +137,9 @@ Public Class ElektraostogSolaryl
             tabRect.Width = rightLimit - tabRect.Left
         End If
 
-        g.FillRectangle(New SolidBrush(If(e.State.HasFlag(DrawItemState.Selected), Color.LightBlue, Color.FromArgb(40, 40, 45))), tabRect)
+        g.FillRectangle(New SolidBrush(If(e.State.HasFlag(DrawItemState.Selected), BackSelectedColor, TabBackColor)), tabRect)
 
-        Using pen As New Pen(Color.FromArgb(40, 40, 45))
+        Using pen As New Pen(TabBackColor)
             g.DrawLine(pen, tabRect.Left, tabRect.Top, tabRect.Right, tabRect.Top)
         End Using
 
@@ -139,32 +147,38 @@ Public Class ElektraostogSolaryl
         .Alignment = StringAlignment.Center,
         .LineAlignment = StringAlignment.Center
     }
-        Dim textColor As Color = If(e.State.HasFlag(DrawItemState.Selected), Color.Black, Color.FromArgb(200, 200, 205))
-        g.DrawString(tabPage.Text, TabControl1.Font, New SolidBrush(textColor), tabRect, sf)
+        Dim _textColor As Color = If(e.State.HasFlag(DrawItemState.Selected), TextSelectedColor, TextColor)
+        g.DrawString(tabPage.Text, TabControl1.Font, New SolidBrush(_textColor), tabRect, sf)
     End Sub
 
     Private Sub PictureBox1_MouseEnter(sender As Object, e As EventArgs) Handles PictureBox1.MouseEnter
-        PictureBox1.BackColor = Color.FromArgb(206, 86, 86)
+        PictureBox1.BackColor = XButtonSelectedColor
+        If Not My.Settings.darkmode Then
+            PictureBox1.Image = My.Resources._Exit
+        End If
     End Sub
 
     Private Sub PictureBox1_MouseLeave(sender As Object, e As EventArgs) Handles PictureBox1.MouseLeave
-        PictureBox1.BackColor = Color.FromArgb(40, 40, 45)
+        PictureBox1.BackColor = _BackColor
+        If Not My.Settings.darkmode Then
+            PictureBox1.Image = My.Resources.Exit_clair
+        End If
     End Sub
 
     Private Sub PictureBox2_MouseEnter(sender As Object, e As EventArgs) Handles PictureBox2.MouseEnter
-        PictureBox2.BackColor = Color.DimGray
+        PictureBox2.BackColor = ButtonSelectedColor
     End Sub
 
     Private Sub PictureBox2_MouseLeave(sender As Object, e As EventArgs) Handles PictureBox2.MouseLeave
-        PictureBox2.BackColor = Color.FromArgb(40, 40, 45)
+        PictureBox2.BackColor = _BackColor
     End Sub
 
     Private Sub PictureBox3_MouseEnter(sender As Object, e As EventArgs) Handles PictureBox3.MouseEnter
-        PictureBox3.BackColor = Color.DimGray
+        PictureBox3.BackColor = ButtonSelectedColor
     End Sub
 
     Private Sub PictureBox3_MouseLeave(sender As Object, e As EventArgs) Handles PictureBox3.MouseLeave
-        PictureBox3.BackColor = Color.FromArgb(40, 40, 45)
+        PictureBox3.BackColor = _BackColor
     End Sub
 
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
@@ -182,12 +196,12 @@ Public Class ElektraostogSolaryl
             Me.Size = New Point(My.Computer.Screen.WorkingArea.Width, My.Computer.Screen.WorkingArea.Height)
             Me.Location = New Point(0, 0)
             fullScreen = True
-            PictureBox2.Image = My.Resources.Min
+            PictureBox2.Image = If(My.Settings.darkmode, My.Resources.Min, My.Resources.Min_clair)
         Else
             Me.Size = normalSize
             Me.Location = normalPos
             fullScreen = False
-            PictureBox2.Image = My.Resources.Max
+            PictureBox2.Image = If(My.Settings.darkmode, My.Resources.Max, My.Resources.Max_clair)
         End If
     End Sub
 

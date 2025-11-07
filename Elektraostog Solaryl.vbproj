@@ -20,6 +20,7 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>C:\Users\tpill\Desktop\ES\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -35,8 +36,7 @@
     <PublisherName>Principauté de Solarys</PublisherName>
     <SuiteName>Elektraostog Solaryl</SuiteName>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.0</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <ApplicationVersion>0.1.0.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -78,7 +78,7 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>false</SignManifests>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>7D4287A993374EE7415DB1C8946161ADAE8ACF56</ManifestCertificateThumbprint>
@@ -87,7 +87,7 @@
     <ManifestKeyFile>Elektraostog Solaryl_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
+    <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>Elektraostog Solaryl_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
@@ -237,6 +237,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Elektraostog-Solaryl.ico" />
+    <None Include="Resources\update.html" />
+    <None Include="Resources\Minn clair.png" />
+    <None Include="Resources\Exit clair.png" />
+    <None Include="Resources\Max clair.png" />
+    <None Include="Resources\Min clair.png" />
+    <None Include="Resources\about.html" />
     <Content Include="Resources\Min.png" />
     <None Include="Resources\settings.html" />
     <None Include="Resources\notfound.html" />

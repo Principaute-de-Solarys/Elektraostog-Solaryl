@@ -68,13 +68,25 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("https://www.google.com/")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("solarys://about/")>  _
         Public Property homepage() As String
             Get
                 Return CType(Me("homepage"),String)
             End Get
             Set
                 Me("homepage") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("https://www.google.com/search?q=")>  _
+        Public Property searchengine() As String
+            Get
+                Return CType(Me("searchengine"),String)
+            End Get
+            Set
+                Me("searchengine") = value
             End Set
         End Property
     End Class

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class tab
     Inherits System.Windows.Forms.UserControl
 
     'UserControl remplace la méthode Dispose pour nettoyer la liste des composants.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class tab
     'REMARQUE : la procédure suivante est requise par le Concepteur Windows Form
     'Elle peut être modifiée à l'aide du Concepteur Windows Form.  
     'Ne la modifiez pas à l'aide de l'éditeur de code.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(tab))
@@ -45,6 +45,7 @@ Partial Class tab
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.ChromiumWebBrowser1 = New CefSharp.WinForms.ChromiumWebBrowser()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.ÀProposToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -65,7 +66,7 @@ Partial Class tab
         '
         'PageTSSB
         '
-        Me.PageTSSB.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RevenirEnArrièreToolStripMenuItem, Me.RevenirEnAvantToolStripMenuItem, Me.RafraîchirToolStripMenuItem, Me.NouvellePageToolStripMenuItem, Me.FermerLaPageToolStripMenuItem, Me.AfficherLesDevToolsToolStripMenuItem, Me.ToolStripSeparator1, Me.RevenirSurSolarysToolStripMenuItem, Me.ParamètresToolStripMenuItem, Me.MettreÀJourToolStripMenuItem})
+        Me.PageTSSB.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RevenirEnArrièreToolStripMenuItem, Me.RevenirEnAvantToolStripMenuItem, Me.RafraîchirToolStripMenuItem, Me.NouvellePageToolStripMenuItem, Me.FermerLaPageToolStripMenuItem, Me.AfficherLesDevToolsToolStripMenuItem, Me.ToolStripSeparator1, Me.RevenirSurSolarysToolStripMenuItem, Me.ParamètresToolStripMenuItem, Me.MettreÀJourToolStripMenuItem, Me.ÀProposToolStripMenuItem})
         Me.PageTSSB.Image = CType(resources.GetObject("PageTSSB.Image"), System.Drawing.Image)
         Me.PageTSSB.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.PageTSSB.Name = "PageTSSB"
@@ -76,7 +77,7 @@ Partial Class tab
         '
         Me.RevenirEnArrièreToolStripMenuItem.Name = "RevenirEnArrièreToolStripMenuItem"
         Me.RevenirEnArrièreToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Z), System.Windows.Forms.Keys)
-        Me.RevenirEnArrièreToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
+        Me.RevenirEnArrièreToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
         Me.RevenirEnArrièreToolStripMenuItem.Text = "Revenir en arrière"
         '
         'RevenirEnAvantToolStripMenuItem
@@ -84,28 +85,28 @@ Partial Class tab
         Me.RevenirEnAvantToolStripMenuItem.Name = "RevenirEnAvantToolStripMenuItem"
         Me.RevenirEnAvantToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
             Or System.Windows.Forms.Keys.Z), System.Windows.Forms.Keys)
-        Me.RevenirEnAvantToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
+        Me.RevenirEnAvantToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
         Me.RevenirEnAvantToolStripMenuItem.Text = "Revenir en avant"
         '
         'RafraîchirToolStripMenuItem
         '
         Me.RafraîchirToolStripMenuItem.Name = "RafraîchirToolStripMenuItem"
         Me.RafraîchirToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
-        Me.RafraîchirToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
+        Me.RafraîchirToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
         Me.RafraîchirToolStripMenuItem.Text = "Rafraîchir"
         '
         'NouvellePageToolStripMenuItem
         '
         Me.NouvellePageToolStripMenuItem.Name = "NouvellePageToolStripMenuItem"
         Me.NouvellePageToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
-        Me.NouvellePageToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
+        Me.NouvellePageToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
         Me.NouvellePageToolStripMenuItem.Text = "Nouvelle page"
         '
         'FermerLaPageToolStripMenuItem
         '
         Me.FermerLaPageToolStripMenuItem.Name = "FermerLaPageToolStripMenuItem"
         Me.FermerLaPageToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.E), System.Windows.Forms.Keys)
-        Me.FermerLaPageToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
+        Me.FermerLaPageToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
         Me.FermerLaPageToolStripMenuItem.Text = "Fermer la page"
         '
         'AfficherLesDevToolsToolStripMenuItem
@@ -113,44 +114,44 @@ Partial Class tab
         Me.AfficherLesDevToolsToolStripMenuItem.Name = "AfficherLesDevToolsToolStripMenuItem"
         Me.AfficherLesDevToolsToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
             Or System.Windows.Forms.Keys.I), System.Windows.Forms.Keys)
-        Me.AfficherLesDevToolsToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
+        Me.AfficherLesDevToolsToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
         Me.AfficherLesDevToolsToolStripMenuItem.Text = "Afficher les DevTools"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(246, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(245, 6)
         '
         'RevenirSurSolarysToolStripMenuItem
         '
         Me.RevenirSurSolarysToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ServeurDiscordToolStripMenuItem, Me.SiteToolStripMenuItem})
         Me.RevenirSurSolarysToolStripMenuItem.Name = "RevenirSurSolarysToolStripMenuItem"
-        Me.RevenirSurSolarysToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
+        Me.RevenirSurSolarysToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
         Me.RevenirSurSolarysToolStripMenuItem.Text = "Revenir sur Solarys"
         '
         'ServeurDiscordToolStripMenuItem
         '
         Me.ServeurDiscordToolStripMenuItem.Name = "ServeurDiscordToolStripMenuItem"
-        Me.ServeurDiscordToolStripMenuItem.Size = New System.Drawing.Size(156, 22)
+        Me.ServeurDiscordToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ServeurDiscordToolStripMenuItem.Text = "Serveur Discord"
         '
         'SiteToolStripMenuItem
         '
         Me.SiteToolStripMenuItem.Name = "SiteToolStripMenuItem"
-        Me.SiteToolStripMenuItem.Size = New System.Drawing.Size(156, 22)
+        Me.SiteToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.SiteToolStripMenuItem.Text = "Site"
         '
         'ParamètresToolStripMenuItem
         '
         Me.ParamètresToolStripMenuItem.Name = "ParamètresToolStripMenuItem"
         Me.ParamètresToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.I), System.Windows.Forms.Keys)
-        Me.ParamètresToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
+        Me.ParamètresToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
         Me.ParamètresToolStripMenuItem.Text = "Paramètres"
         '
         'MettreÀJourToolStripMenuItem
         '
         Me.MettreÀJourToolStripMenuItem.Name = "MettreÀJourToolStripMenuItem"
-        Me.MettreÀJourToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
+        Me.MettreÀJourToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
         Me.MettreÀJourToolStripMenuItem.Text = "Mettre à jour"
         '
         'ToolStripSeparator2
@@ -202,6 +203,12 @@ Partial Class tab
         Me.Panel1.Size = New System.Drawing.Size(200, 534)
         Me.Panel1.TabIndex = 2
         '
+        'ÀProposToolStripMenuItem
+        '
+        Me.ÀProposToolStripMenuItem.Name = "ÀProposToolStripMenuItem"
+        Me.ÀProposToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
+        Me.ÀProposToolStripMenuItem.Text = "À propos"
+        '
         'tab
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -239,4 +246,5 @@ Partial Class tab
     Friend WithEvents ChromiumWebBrowser1 As CefSharp.WinForms.ChromiumWebBrowser
     Friend WithEvents AfficherLesDevToolsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Panel1 As Panel
+    Friend WithEvents ÀProposToolStripMenuItem As ToolStripMenuItem
 End Class

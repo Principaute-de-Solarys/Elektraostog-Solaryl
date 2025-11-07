@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Erreur 404 - Page introuvable</title>
+    <title>Mise à jour du navigateur</title>
     <style>
         body {
             font-family: "Segoe UI", Arial, sans-serif;
@@ -33,7 +33,7 @@
             margin: 10px 20px;
         }
 
-        .url {
+        .stateMaj {
             background: rgba(255, 255, 255, 0.2);
             padding: 6px 10px;
             border-radius: 6px;
@@ -72,14 +72,34 @@
     </style>
 </head>
 <body>
-    <h1>Erreur 404</h1>
-    <p>La page demandée n'existe pas ou a été déplacée.</p>
-    <p>URL : <span id="page" class="url"></span></p>
+    <h1>Mise à jour du navigateur <span id="state" class="stateMaj">non requise</span></h1>
+    <p id="stateDesc">Vous avez actuellement la dernière version d'Elektraostog Solaryl !</p>
+    <p>Version : <span id="version" class="stateMaj">0.0.0.0</span></p>
+    <div id="updateBtn"></div>
     <button onclick="window.history.back()">Retour à la page précédente</button>
     <footer>Elektraostog Solaryl</footer>
 
     <script>
-        document.getElementById("page").textContent = window.location.href
+        document.addEventListener("DOMContentLoaded", async () => {
+            await CefSharp.BindObjectAsync("solarysUpdate");
+            if (window.solarysUpdate && window.solarysUpdate.getVer) {
+                const data = await solarysUpdate.getVer();
+                if (data.isNeeded) {
+                    document.getElementById("state").textContent = "requise";
+                    document.getElementById("stateDesc").innerHTML = `Vous n'avez pas actuellement la dernière version d'Elektraostog Solaryl : <span class='stateMaj'>${data.onlinever}</span>`;
+                    document.getElementById("updateBtn").innerHTML = `<button onclick="goUpdate()">Mettre à jour maintenant</button>`
+                }
+                document.getElementById("version").textContent = data.ver;
+            }
+        });
+
+        function goUpdate() {
+            if (window.solarysUpdate && window.solarysUpdate.goUpdate) {
+                solarysUpdate.goUpdate();
+            } else {
+                alert("Impossible de rediriger : interface manquante côté navigateur.");
+            }
+        }
     </script>
 </body>
 </html>

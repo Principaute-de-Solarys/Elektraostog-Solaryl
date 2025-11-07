@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos d'Elektraostog Solaryl</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #0f056b, #0044ff);
+            background-attachment: fixed;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            overflow-y: auto;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            padding-bottom: 5px;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .infobox {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 80%;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+
+        .infobox p li {
+            font-size: 1.1rem;
+        }
+
+        .infobox ul {
+            text-align: left;
+        }
+
+        a {
+            color: #dcb253;
+        }
+
+        button {
+            margin-top: 25px;
+            background: #fff;
+            color: #333;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #f1f1f1;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            margin-top: 20px;
+            bottom: 15px;
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <h1>À propos d'Elektraostog Solaryl</h1>
+
+    <h2>La team de développement</h2>
+    <div class="infobox">
+        <p>Cette application a été entièrement développée par l'équipe de Colog danelektrascral, la même équipe derrière DMarkdown Text Editor.</p>
+        <ul>
+            <li>Timoh danSolaryl (Timoh de Solarys)</li>
+            <li>Adventure Peashooter</li>
+        </ul>
+    </div>
+    
+    <h2>Le contexte de développement</h2>
+    <div class="infobox">
+        <p>Le développement de cette application a commencé vers la fin de mars 2025, sans réel but autre que de faire un navigateur Chromium à l'effigie de la Principauté de Solarys.</p>
+        <p>Depuis juillet 2025, Colog danelektrascral a officiellement repris le projet et l'a consolidé, étant donné que la base était déjà présente.</p>
+    </div>
+    
+    <h2>Comment contribuer au projet</h2>
+    <div class="infobox">
+        <p>Vous pouvez contribuer de plusieurs manières :</p>
+        <ul>
+            <li>En tant que développeur VB.NET pour améliorer le navigateur lui-même <a href="https://discord.com/channels/1257704920526618766/1421599816982462595">(Rejoindre Colog danelektrascral)</a></li>
+            <li>En tant que développeur Web pour améliorer les sites intégrés <a href="https://discord.com/channels/1257704920526618766/1421599816982462595">(Rejoindre Colog danelektrascral)</a></li>
+            <li>En proposant des modifications, sans réelles connaissances en développement <a href="https://discord.gg/dNeWuQ78sj">(Rejoindre la Principauté de Solarys)</a></li>
+        </ul>
+    </div>
+    
+    <h2>Conseils de prise en main</h2>
+    <div class="infobox">
+        <p>Afin de bien prendre en main le navigateur, allez dans les paramètres pour changer la page d'accueil et choisir votre moteur de recherche préféré.</p>
+        <p>Il se peut que des nouveautés arrivent de temps à autre, donc surveillez les mises à jour de très près.</p>
+    </div>
+
+    <button onclick="document.location.href = `solarys://settings/`">Aller modifier les paramètres</button>
+
+    <footer>Elektraostog Solaryl</footer>
+</body>
+</html>

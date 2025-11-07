@@ -24,6 +24,7 @@ Public Class tab
         Private Const IDM_COPY_FILE As Integer = 26503
         Private Const IDM_COPY_FILE_ADDRESS As Integer = 26504
         Private Const IDM_OPEN_DEVTOOLS As Integer = 26505
+
         Public Sub OnBeforeContextMenu(browserControl As IWebBrowser, browser As IBrowser, frame As IFrame, contextMenuParams As IContextMenuParams, model As IMenuModel) Implements IContextMenuHandler.OnBeforeContextMenu
             model.Clear()
             model.AddItem(CefMenuCommand.Back, "Revenir en arrière")
@@ -97,6 +98,7 @@ Public Class tab
                 model.AddItem(CefMenuCommand.SelectAll, "Tout sélectionner")
             End If
         End Sub
+
         Public Function OnContextMenuCommand(browserControl As IWebBrowser, browser As IBrowser, frame As IFrame, contextMenuParams As IContextMenuParams, commandId As CefMenuCommand, eventFlags As CefEventFlags) As Boolean Implements IContextMenuHandler.OnContextMenuCommand
             Select Case commandId
                 Case CefMenuCommand.Back
@@ -176,7 +178,7 @@ Public Class tab
         ElseIf Regex.IsMatch(ToolStripTextBox1.Text, patt) OrElse ToolStripTextBox1.Text.StartsWith("chrome://") OrElse ToolStripTextBox1.Text.StartsWith("solarys://") Then
             ChromiumWebBrowser1.Load(ToolStripTextBox1.Text)
         Else
-            ChromiumWebBrowser1.Load("https://www.google.com/search?q=" & ToolStripTextBox1.Text)
+            ChromiumWebBrowser1.Load(My.Settings.searchengine & ToolStripTextBox1.Text)
         End If
         ToolStripTextBox1.Clear()
     End Sub
@@ -186,23 +188,24 @@ Public Class tab
     End Sub
 
     Private Sub tab_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        PageTSSB.Image = If(My.Settings.darkmode, My.Resources.page_sombre, My.Resources.page_clair)
+        ToolStripButton1.Image = If(My.Settings.darkmode, My.Resources.y_aller_sombre, My.Resources.y_aller_clair)
         ChromiumWebBrowser1.Dock = DockStyle.Fill
         Panel1.Dock = DockStyle.Right
         Panel1.Hide()
         ChromiumWebBrowser1.JsDialogHandler = New SolarysJsDialogHandler
         ChromiumWebBrowser1.LifeSpanHandler = New SolarysLifeSpanHandler(AddressOf AjouterNouvelOnglet)
         ChromiumWebBrowser1.MenuHandler = New SolarysContextMenuHandler(AddressOf AjouterNouvelOnglet, AddressOf ShowDevTools)
-        ChromiumWebBrowser1.JavascriptObjectRepository.Register("solarysSettings", New ParamManager(), isAsync:=True)
         ChromiumWebBrowser1.Load(TargetUrl)
-        ToolStrip1.BackColor = Color.FromArgb(40, 40, 45)
-        ToolStrip1.ForeColor = Color.FromArgb(200, 200, 205)
+        ToolStrip1.BackColor = _BackColor
+        ToolStrip1.ForeColor = TextColor
         ToolStrip1.Renderer = New TSRenderer()
-        Me.BackColor = Color.FromArgb(40, 40, 45)
-        Me.ForeColor = Color.FromArgb(200, 200, 205)
-        ChromiumWebBrowser1.BackColor = Color.FromArgb(40, 40, 45)
-        ChromiumWebBrowser1.ForeColor = Color.FromArgb(200, 200, 205)
-        ToolStripTextBox1.BackColor = Color.FromArgb(51, 51, 57)
-        ToolStripTextBox1.ForeColor = Color.FromArgb(200, 200, 205)
+        Me.BackColor = _BackColor
+        Me.ForeColor = TextColor
+        ChromiumWebBrowser1.BackColor = _BackColor
+        ChromiumWebBrowser1.ForeColor = TextColor
+        ToolStripTextBox1.BackColor = TextBoxBackColor
+        ToolStripTextBox1.ForeColor = TextColor
     End Sub
 
     Public title
@@ -237,20 +240,7 @@ Public Class tab
     End Sub
 
     Private Sub NouvellePageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NouvellePageToolStripMenuItem.Click
-        Dim tabcontroll As TabControl = ObtenirTabControl()
-        Dim tab1 As New tab
-        With tab1
-            .Dock = DockStyle.Fill
-            .Tag = tabcontroll.TabPages.Count
-            .ParentTabControl = tabcontroll
-            .ParentTabContainer = ParentTabContainer
-            .TargetUrl = TargetUrl
-        End With
-        Dim newTab As New TabPage("Nouvel onglet")
-        newTab.Controls.Add(tab1)
-        ParentTabContainer.Add(newTab, tab1)
-        tabcontroll.TabPages.Add(newTab)
-        tabcontroll.SelectedTab = newTab
+        AjouterNouvelOnglet()
     End Sub
 
     Private Sub FermerLaPageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FermerLaPageToolStripMenuItem.Click
@@ -287,7 +277,7 @@ Public Class tab
     End Sub
 
     Public Delegate Sub AjouterNouvelOngletDelegate(targetUrl As String)
-    Private Sub AjouterNouvelOnglet(Optional targetUrl As String = "Défini pas ici avec My.Settings.homepage")
+    Public Sub AjouterNouvelOnglet(Optional targetUrl As String = "Défini pas ici avec My.Settings.homepage")
         If targetUrl = "Défini pas ici avec My.Settings.homepage" Then
             targetUrl = My.Settings.homepage
         End If
@@ -342,8 +332,25 @@ Public Class tab
         End If
     End Sub
 
+    Dim isSRisky As Boolean = False
+    Dim isURisky As Boolean = False
+
     Private Sub ChromiumWebBrowser1_AddressChanged(sender As Object, e As AddressChangedEventArgs) Handles ChromiumWebBrowser1.AddressChanged
-        currtUrl = e.Address
+        Dim currtUrl As String = e.Address
+        If currtUrl.StartsWith("solarys://settings/") And Not isSRisky Then
+            ChromiumWebBrowser1.JavascriptObjectRepository.Register("solarysSettings", New ParamManager(), isAsync:=True)
+            isSRisky = True
+        ElseIf isSRisky Then
+            ChromiumWebBrowser1.JavascriptObjectRepository.UnRegister("solarysSettings")
+            isSRisky = False
+        End If
+        If currtUrl.StartsWith("solarys://update/") And Not isURisky Then
+            ChromiumWebBrowser1.JavascriptObjectRepository.Register("solarysUpdate", New UpdateManager(), isAsync:=True)
+            isURisky = True
+        ElseIf isSRisky Then
+            ChromiumWebBrowser1.JavascriptObjectRepository.UnRegister("solarysUpdate")
+            isURisky = False
+        End If
         ToolStripTextBox1.GetCurrentParent().Invoke(Sub()
                                                         ToolStripTextBox1.Text = currtUrl
                                                     End Sub)
@@ -363,29 +370,8 @@ Public Class tab
         ChromiumWebBrowser1.LoadUrl("solarys://settings/")
     End Sub
 
-    Dim verr As String = My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & "." & My.Application.Info.Version.Build & "." & My.Application.Info.Version.Revision
     Private Sub MettreÀJourToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MettreÀJourToolStripMenuItem.Click
-        Dim web As HttpWebRequest = HttpWebRequest.Create("https://raw.githubusercontent.com/Timoh5709/Elektraostog-Solaryl/refs/heads/main/ver")
-        web.Timeout = 10000
-        web.Method = "GET"
-        Dim reponse As HttpWebResponse = web.GetResponse()
-        Dim reader As New StreamReader(reponse.GetResponseStream())
-        Dim page As String = reader.ReadToEnd
-        Dim onlinever As String = page.Substring(0, 7)
-        Dim link As String = ""
-        If Not onlinever = verr Then
-            link = "https://raw.githubusercontent.com/Timoh5709/Elektraostog-Solaryl/refs/heads/main/app.zip"
-        End If
-        If Not onlinever = "" Then
-            If Not link = "" Then
-                MsgBox("Mise à jour requise")
-                Process.Start("chrome", link)
-            Else
-                MsgBox("Vous êtes à jour")
-            End If
-        Else
-            MsgBox("Erreur Internet !")
-        End If
+        ChromiumWebBrowser1.LoadUrl("solarys://update/")
     End Sub
 
     Private Sub ToolStrip1_Resize(sender As Object, e As EventArgs) Handles ToolStrip1.Resize
@@ -441,5 +427,9 @@ Public Class tab
             ChromiumDevTools1.Dock = DockStyle.Fill
             ChromiumDevTools1.Size = New Point(Panel1.Width, Panel1.Height)
         End If
+    End Sub
+
+    Private Sub ÀProposToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ÀProposToolStripMenuItem.Click
+        ChromiumWebBrowser1.LoadUrl("solarys://about/")
     End Sub
 End Class

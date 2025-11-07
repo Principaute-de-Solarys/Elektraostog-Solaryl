@@ -6,7 +6,10 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="homepage" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://www.google.com/</Value>
+      <Value Profile="(Default)">solarys://about/</Value>
+    </Setting>
+    <Setting Name="searchengine" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://www.google.com/search?q=</Value>
     </Setting>
   </Settings>
 </SettingsFile>
