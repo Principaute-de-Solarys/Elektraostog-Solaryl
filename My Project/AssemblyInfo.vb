@@ -11,9 +11,9 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("Elektraostog Solaryl")>
 <Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("Principauté de Solarys")>
+<Assembly: AssemblyCompany("Colog danelektrascal")>
 <Assembly: AssemblyProduct("Elektraostog Solaryl")>
-<Assembly: AssemblyCopyright("Copyright © Colog danelektrascal & Principauté de Solarys 2025")>
+<Assembly: AssemblyCopyright("Copyright © Colog danelektrascal 2025")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
