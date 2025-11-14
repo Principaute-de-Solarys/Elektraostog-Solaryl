@@ -1,9 +1,10 @@
-﻿Imports CefSharp
+﻿Imports System.IO
+Imports System.Net
+Imports System.Security.Policy
+Imports System.Text.RegularExpressions
+Imports CefSharp
 Imports CefSharp.WinForms
 Imports CefSharp.WinForms.Host
-Imports System.IO
-Imports System.Net
-Imports System.Text.RegularExpressions
 
 Public Class tab
     Dim patt = "^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
@@ -187,9 +188,29 @@ Public Class tab
         CheckLink()
     End Sub
 
+    Dim favorites As Dictionary(Of String, String)
+
+    Private Sub UpdateFavoritesMenu()
+        favorites = LoadFavorite()
+        FavoriteButton.DropDownItems.Clear()
+        For Each favorite In favorites
+            Dim item As New ToolStripMenuItem(favorite.Key)
+            item.Tag = favorite.Value
+
+            AddHandler item.Click, Sub(sender2 As Object, e2 As EventArgs)
+                                       Dim clicked As ToolStripMenuItem = CType(sender2, ToolStripMenuItem)
+                                       Dim url As String = clicked.Tag.ToString()
+
+                                       ChromiumWebBrowser1.Load(url)
+                                   End Sub
+            FavoriteButton.DropDownItems.Add(item)
+        Next
+    End Sub
+
     Private Sub tab_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         PageTSSB.Image = If(My.Settings.darkmode, My.Resources.page_sombre, My.Resources.page_clair)
         ToolStripButton1.Image = If(My.Settings.darkmode, My.Resources.y_aller_sombre, My.Resources.y_aller_clair)
+        FavoriteButton.Image = If(My.Settings.darkmode, My.Resources.Favoris, My.Resources.Favoris_clair)
         ChromiumWebBrowser1.Dock = DockStyle.Fill
         Panel1.Dock = DockStyle.Right
         Panel1.Hide()
@@ -206,6 +227,7 @@ Public Class tab
         ChromiumWebBrowser1.ForeColor = TextColor
         ToolStripTextBox1.BackColor = TextBoxBackColor
         ToolStripTextBox1.ForeColor = TextColor
+        UpdateFavoritesMenu()
     End Sub
 
     Public title
@@ -213,6 +235,11 @@ Public Class tab
 
     Private Sub ChromiumWebBrowser1_TitleChanged(sender As Object, e As TitleChangedEventArgs) Handles ChromiumWebBrowser1.TitleChanged
         title = e.Title
+        If needHistory Then
+            Dim now1 As Date = New Date.Now
+            AddToHistory(now1, title, currtUrl)
+            needHistory = False
+        End If
     End Sub
 
     Private Sub RevenirEnArrièreToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RevenirEnArrièreToolStripMenuItem.Click
@@ -320,26 +347,43 @@ Public Class tab
         Return Nothing
     End Function
 
-    Dim dropped As Boolean = False
+    Dim Pdropped As Boolean = False
+    Dim Fdropped As Boolean = False
 
     Private Sub PageTSSB_ButtonClick(sender As Object, e As EventArgs) Handles PageTSSB.ButtonClick
-        If dropped = True Then
+        If Pdropped = True Then
             PageTSSB.HideDropDown()
-            dropped = False
+            Pdropped = False
         Else
             PageTSSB.ShowDropDown()
-            dropped = True
+            Pdropped = True
+        End If
+    End Sub
+
+    Private Sub FavoriteButton_ButtonClick(sender As Object, e As EventArgs) Handles FavoriteButton.ButtonClick
+        If Fdropped = True Then
+            FavoriteButton.HideDropDown()
+            Fdropped = False
+        Else
+            FavoriteButton.ShowDropDown()
+            Fdropped = True
         End If
     End Sub
 
     Dim isSRisky As Boolean = False
     Dim isURisky As Boolean = False
+    Dim isHRisky As Boolean = False
+    Dim needHistory As Boolean = False
+    Dim deleteFav As Boolean = False
 
     Private Sub ChromiumWebBrowser1_AddressChanged(sender As Object, e As AddressChangedEventArgs) Handles ChromiumWebBrowser1.AddressChanged
-        Dim currtUrl As String = e.Address
+        currtUrl = e.Address
+        needHistory = True
         If currtUrl.StartsWith("solarys://settings/") And Not isSRisky Then
             ChromiumWebBrowser1.JavascriptObjectRepository.Register("solarysSettings", New ParamManager(), isAsync:=True)
             isSRisky = True
+        ElseIf currtUrl.StartsWith("solarys://settings/") And isSRisky Then
+            'Fait rien pour skip le dernier ElseIf
         ElseIf isSRisky Then
             ChromiumWebBrowser1.JavascriptObjectRepository.UnRegister("solarysSettings")
             isSRisky = False
@@ -347,13 +391,32 @@ Public Class tab
         If currtUrl.StartsWith("solarys://update/") And Not isURisky Then
             ChromiumWebBrowser1.JavascriptObjectRepository.Register("solarysUpdate", New UpdateManager(), isAsync:=True)
             isURisky = True
+        ElseIf currtUrl.StartsWith("solarys://update/") And isURisky Then
+            'Fait rien pour skip le dernier ElseIf
         ElseIf isSRisky Then
             ChromiumWebBrowser1.JavascriptObjectRepository.UnRegister("solarysUpdate")
             isURisky = False
         End If
+        If currtUrl.StartsWith("solarys://history/") And Not isHRisky Then
+            ChromiumWebBrowser1.JavascriptObjectRepository.Register("solarysHistory", New HistoryManager(), isAsync:=True)
+            isHRisky = True
+        ElseIf currtUrl.StartsWith("solarys://history/") And isHRisky Then
+            'Fait rien pour skip le dernier ElseIf
+        ElseIf isHRisky Then
+            ChromiumWebBrowser1.JavascriptObjectRepository.UnRegister("solarysHistory")
+            isHRisky = False
+        End If
         ToolStripTextBox1.GetCurrentParent().Invoke(Sub()
                                                         ToolStripTextBox1.Text = currtUrl
                                                     End Sub)
+
+        If favorites.Values.Any(Function(u) u.Equals(currtUrl)) Then
+            AjouterAuxFavorisToolStripMenuItem.Text = "Supprimer des favoris"
+            deleteFav = True
+        Else
+            AjouterAuxFavorisToolStripMenuItem.Text = "Ajouter aux favoris"
+            deleteFav = False
+        End If
     End Sub
 
     Private Sub ChromiumWebBrowser1_LoadError(sender As Object, e As LoadErrorEventArgs) Handles ChromiumWebBrowser1.LoadError
@@ -375,7 +438,7 @@ Public Class tab
     End Sub
 
     Private Sub ToolStrip1_Resize(sender As Object, e As EventArgs) Handles ToolStrip1.Resize
-        ToolStripTextBox1.Size = New Point(ToolStrip1.Width - 182, ToolStripTextBox1.Height)
+        ToolStripTextBox1.Size = New Point(ToolStrip1.Width - 195, ToolStripTextBox1.Height)
     End Sub
 
     Private Sub ServeurDiscordToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ServeurDiscordToolStripMenuItem.Click
@@ -431,5 +494,30 @@ Public Class tab
 
     Private Sub ÀProposToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ÀProposToolStripMenuItem.Click
         ChromiumWebBrowser1.LoadUrl("solarys://about/")
+    End Sub
+
+    Private Sub ChaîneYouTubeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChaîneYouTubeToolStripMenuItem.Click
+        ChromiumWebBrowser1.LoadUrl("https://www.youtube.com/@Principaut%C3%A9deSolarys")
+    End Sub
+
+    Private Sub CompteInstagramToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CompteInstagramToolStripMenuItem.Click
+        ChromiumWebBrowser1.LoadUrl("https://www.instagram.com/solarys_micronation")
+    End Sub
+
+    Private Sub HistoriqueToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HistoriqueToolStripMenuItem.Click
+        ChromiumWebBrowser1.LoadUrl("solarys://history/")
+    End Sub
+
+    Private Sub AjouterAuxFavorisToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AjouterAuxFavorisToolStripMenuItem.Click
+        If deleteFav Then
+            RemoveFavorite(currtUrl)
+            AjouterAuxFavorisToolStripMenuItem.Text = "Ajouter aux favoris"
+            deleteFav = False
+        Else
+            AddFavorite(title, currtUrl)
+            AjouterAuxFavorisToolStripMenuItem.Text = "Supprimer des favoris"
+            deleteFav = True
+        End If
+        UpdateFavoritesMenu()
     End Sub
 End Class

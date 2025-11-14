@@ -5,7 +5,7 @@ C'est un navigateur solaryen, pensé pour les solaryens. Il est voué à être s
 
 ## Présentation
 
-Elektraostog Solaryl est un projet en développement, actuellement en version `0.1.0.0`.
+Elektraostog Solaryl est un projet en développement, actuellement en version `0.2`.
 Il s'agit d'un navigateur basé sur **Chromium**, avec une interface **WinForms entièrement redesignée**, pensée pour offrir une expérience claire et moderne.
 
 ## Fonctionnalités principales
@@ -13,9 +13,11 @@ Il s'agit d'un navigateur basé sur **Chromium**, avec une interface **WinForms 
 - **Navigation Internet** : bah c'est un navigateur quoi.
 - **Système de pages internes** :
   - comme `solarys://about/`, la page d'accueil par défaut, remplaçable dans les paramètres ;
+  - 🆕 `solarys://history/` pour accéder à ton historique ;
   - ou bien `solarys://settings/` pour les paramètres ;
   - et `solarys://update/` pour mettre à jour le navigateur.
 - **Système d'onglets** : gestion complète des onglets (c'est plus dur que ça en a l'air).
+- **Système de favoris** : pour mettre en favori tes pages préférées.
 - **Moteurs de recherche supportés** :
   - Par défaut : **Google**
   - En option : **DuckDuckGo, Qwant, Bing, Yahoo**
@@ -26,13 +28,16 @@ Il s'agit d'un navigateur basé sur **Chromium**, avec une interface **WinForms 
 
 | Fonction | Statut | Remarques |
 |--|--|--|
-| Gestion de l'historique | 🟡 Prévu | Ça sera un point travaillé en priorité |
-| Système de favoris | 🟡 Prévu | Ça sera un point travaillé en priorité |
-| Gestion des téléchargements | 🟡 Prévu | Ce point est prévu, mais n'est pas prioritaire |
+| Gestion des téléchargements | 🟡 Prévu | Ça sera un point travaillé en priorité |
+| Bug des raccourcis | 🟡 Prévu | Ça sera un point travaillé en priorité |
+| Système d'extensions | 🟠 Possible | Sera ajouté si demandé |
+| "Intranet solaryen" | 🟠 Possible | Sera ajouté si demandé |
 | Restauration de session | 🟠 Possible | Sera ajouté si demandé |
 | Mode privé | ⚫ Lointain | Vraiment pas prioritaire |
 | Filtre de contenu / sécurité avancée | ⚫ Lointain | Non prévu pour l'instant |
 | Mode hors ligne | 🔴 Non fonctionnel | Bientôt corrigé |
+
+Si vous avez d'autres suggestions, dites le moi !
 
 ## Specs du projet
 
@@ -44,9 +49,9 @@ Il s'agit d'un navigateur basé sur **Chromium**, avec une interface **WinForms 
 ## Compatibilité
 
 - **Windows uniquement** pour le moment
-- .NET Framework 4.7.2 l'oblige, **Windows 7 SP1+** est requis
+- .NET Framework 4.7.2 l'oblige, **Windows 7 SP1+ x86-64** est requis
 
 ## Licence
 
 Ce projet est distribué sous la **licence Apache 2.0**.
-Tu peux l'utiliser, le modifier et le redistribuer librement - à condition de créditer **Colog danelektrascral**.
+Tu peux l'utiliser, le modifier et le redistribuer librement, à condition de créditer **Colog danelektrascral**.

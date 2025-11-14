@@ -106,6 +106,50 @@ Namespace My.Resources
         '''<summary>
         '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property Favoris() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Favoris", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property Favoris_clair() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Favoris_clair", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Recherche une chaîne localisée semblable à &lt;!DOCTYPE html&gt;
+        '''&lt;html lang=&quot;fr&quot;&gt;
+        '''&lt;head&gt;
+        '''    &lt;meta charset=&quot;UTF-8&quot;&gt;
+        '''    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+        '''    &lt;title&gt;Historique&lt;/title&gt;
+        '''    &lt;style&gt;
+        '''        body {
+        '''            font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
+        '''            background: linear-gradient(135deg, #0f056b, #0044ff);
+        '''            background-attachment: fixed;
+        '''            color: #ffffff;
+        '''            display: flex;
+        '''            flex-direction: column;
+        '''            align-items: center;
+        '''          [le reste de la chaîne a été tronqué]&quot;;.
+        '''</summary>
+        Friend ReadOnly Property history() As String
+            Get
+                Return ResourceManager.GetString("history", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property Max() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Max", resourceCulture)

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historique</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #0f056b, #0044ff);
+            background-attachment: fixed;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            overflow-y: auto;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            max-width: 600px;
+        }
+
+        #historyContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .entry {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            width: 80%;
+            max-width: 1600px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+
+        .entry a {
+            color: #dcb253;
+            font-size: 1.1rem;
+        }
+
+        button {
+            margin-top: 25px;
+            background: #fff;
+            color: #333;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #f1f1f1;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            margin-top: 20px;
+            bottom: 15px;
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <h1>Historique</h1>
+    
+    <button onclick="clearHistory()">Supprimer l'historique</button>
+
+    <p>Attention : au delà de 500 éléments, les visites les plus anciennes seront effacée</p>
+
+    <div id="historyContainer"></div>
+
+    <button onclick="window.history.back()">Retour à la page précédente</button>
+
+    <footer>Elektraostog Solaryl</footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            await CefSharp.BindObjectAsync("solarysHistory");
+
+            if (!window.solarysHistory || !solarysHistory.getJSON) {
+                alert("Impossible de charger l'historique.");
+                return;
+            }
+
+            const jsonTxt = await solarysHistory.getJSON("history");
+            let entries = [];
+
+            try {
+                entries = JSON.parse(jsonTxt);
+            } catch (e) {
+                console.error("JSON invalide :", e);
+            }
+
+            const container = document.getElementById("historyContainer");
+            container.innerHTML = "";
+
+            for (let item of entries.reverse()) {
+                const div = document.createElement("div");
+                div.className = "entry";
+
+                div.innerHTML = `
+                    <h2>${item.name}</h2>
+                    <a href="${item.url}">${item.url}</a>
+                    <p>${new Date(item.dateLinked).toLocaleString()}</p>
+                `;
+
+                container.appendChild(div);
+            }
+        });
+
+        function clearHistory() {
+            if (window.solarysHistory && window.solarysHistory.clearJSON) {
+                solarysHistory.clearJSON("history");
+                alert("L'historique a bien été supprimé.")
+            } else {
+                alert("Impossible de supprimer : interface manquante côté navigateur.");
+            }
+        }
+    </script>
+</body>
+</html>

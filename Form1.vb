@@ -6,6 +6,7 @@ Imports CefSharp.WinForms
 
 Public Class ElektraostogSolaryl
     Private Sub ElektraostogSolaryl_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        InitAppData()
         PictureBox1.BackColor = _BackColor
         PictureBox1.Image = If(My.Settings.darkmode, My.Resources._Exit, My.Resources.Exit_clair)
         PictureBox2.BackColor = _BackColor

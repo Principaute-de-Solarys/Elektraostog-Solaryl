@@ -29,6 +29,7 @@ Partial Class tab
         Me.RevenirEnArrièreToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RevenirEnAvantToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RafraîchirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AjouterAuxFavorisToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NouvellePageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FermerLaPageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AfficherLesDevToolsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -36,16 +37,21 @@ Partial Class tab
         Me.RevenirSurSolarysToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ServeurDiscordToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SiteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ChaîneYouTubeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CompteInstagramToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ParamètresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HistoriqueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MettreÀJourToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ÀProposToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
         Me.ToolStripTextBox1 = New System.Windows.Forms.ToolStripTextBox()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.FavoriteButton = New System.Windows.Forms.ToolStripSplitButton()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.ChromiumWebBrowser1 = New CefSharp.WinForms.ChromiumWebBrowser()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.ÀProposToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -55,7 +61,7 @@ Partial Class tab
         Me.ToolStrip1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(24, 24)
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PageTSSB, Me.ToolStripSeparator2, Me.ToolStripLabel1, Me.ToolStripTextBox1, Me.ToolStripButton1})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PageTSSB, Me.ToolStripSeparator2, Me.ToolStripLabel1, Me.ToolStripTextBox1, Me.ToolStripButton1, Me.ToolStripSeparator3, Me.FavoriteButton})
         Me.ToolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
@@ -66,11 +72,12 @@ Partial Class tab
         '
         'PageTSSB
         '
-        Me.PageTSSB.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RevenirEnArrièreToolStripMenuItem, Me.RevenirEnAvantToolStripMenuItem, Me.RafraîchirToolStripMenuItem, Me.NouvellePageToolStripMenuItem, Me.FermerLaPageToolStripMenuItem, Me.AfficherLesDevToolsToolStripMenuItem, Me.ToolStripSeparator1, Me.RevenirSurSolarysToolStripMenuItem, Me.ParamètresToolStripMenuItem, Me.MettreÀJourToolStripMenuItem, Me.ÀProposToolStripMenuItem})
+        Me.PageTSSB.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.PageTSSB.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RevenirEnArrièreToolStripMenuItem, Me.RevenirEnAvantToolStripMenuItem, Me.RafraîchirToolStripMenuItem, Me.AjouterAuxFavorisToolStripMenuItem, Me.NouvellePageToolStripMenuItem, Me.FermerLaPageToolStripMenuItem, Me.AfficherLesDevToolsToolStripMenuItem, Me.ToolStripSeparator1, Me.RevenirSurSolarysToolStripMenuItem, Me.ParamètresToolStripMenuItem, Me.HistoriqueToolStripMenuItem, Me.MettreÀJourToolStripMenuItem, Me.ÀProposToolStripMenuItem})
         Me.PageTSSB.Image = CType(resources.GetObject("PageTSSB.Image"), System.Drawing.Image)
         Me.PageTSSB.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.PageTSSB.Name = "PageTSSB"
-        Me.PageTSSB.Size = New System.Drawing.Size(73, 28)
+        Me.PageTSSB.Size = New System.Drawing.Size(40, 28)
         Me.PageTSSB.Text = "Page"
         '
         'RevenirEnArrièreToolStripMenuItem
@@ -94,6 +101,13 @@ Partial Class tab
         Me.RafraîchirToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
         Me.RafraîchirToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
         Me.RafraîchirToolStripMenuItem.Text = "Rafraîchir"
+        '
+        'AjouterAuxFavorisToolStripMenuItem
+        '
+        Me.AjouterAuxFavorisToolStripMenuItem.Name = "AjouterAuxFavorisToolStripMenuItem"
+        Me.AjouterAuxFavorisToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.F), System.Windows.Forms.Keys)
+        Me.AjouterAuxFavorisToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
+        Me.AjouterAuxFavorisToolStripMenuItem.Text = "Ajouter aux favoris"
         '
         'NouvellePageToolStripMenuItem
         '
@@ -124,7 +138,7 @@ Partial Class tab
         '
         'RevenirSurSolarysToolStripMenuItem
         '
-        Me.RevenirSurSolarysToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ServeurDiscordToolStripMenuItem, Me.SiteToolStripMenuItem})
+        Me.RevenirSurSolarysToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ServeurDiscordToolStripMenuItem, Me.SiteToolStripMenuItem, Me.ChaîneYouTubeToolStripMenuItem, Me.CompteInstagramToolStripMenuItem})
         Me.RevenirSurSolarysToolStripMenuItem.Name = "RevenirSurSolarysToolStripMenuItem"
         Me.RevenirSurSolarysToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
         Me.RevenirSurSolarysToolStripMenuItem.Text = "Revenir sur Solarys"
@@ -132,14 +146,26 @@ Partial Class tab
         'ServeurDiscordToolStripMenuItem
         '
         Me.ServeurDiscordToolStripMenuItem.Name = "ServeurDiscordToolStripMenuItem"
-        Me.ServeurDiscordToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ServeurDiscordToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
         Me.ServeurDiscordToolStripMenuItem.Text = "Serveur Discord"
         '
         'SiteToolStripMenuItem
         '
         Me.SiteToolStripMenuItem.Name = "SiteToolStripMenuItem"
-        Me.SiteToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SiteToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
         Me.SiteToolStripMenuItem.Text = "Site"
+        '
+        'ChaîneYouTubeToolStripMenuItem
+        '
+        Me.ChaîneYouTubeToolStripMenuItem.Name = "ChaîneYouTubeToolStripMenuItem"
+        Me.ChaîneYouTubeToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.ChaîneYouTubeToolStripMenuItem.Text = "Chaîne YouTube"
+        '
+        'CompteInstagramToolStripMenuItem
+        '
+        Me.CompteInstagramToolStripMenuItem.Name = "CompteInstagramToolStripMenuItem"
+        Me.CompteInstagramToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.CompteInstagramToolStripMenuItem.Text = "Compte Instagram"
         '
         'ParamètresToolStripMenuItem
         '
@@ -148,11 +174,24 @@ Partial Class tab
         Me.ParamètresToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
         Me.ParamètresToolStripMenuItem.Text = "Paramètres"
         '
+        'HistoriqueToolStripMenuItem
+        '
+        Me.HistoriqueToolStripMenuItem.Name = "HistoriqueToolStripMenuItem"
+        Me.HistoriqueToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.H), System.Windows.Forms.Keys)
+        Me.HistoriqueToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
+        Me.HistoriqueToolStripMenuItem.Text = "Historique"
+        '
         'MettreÀJourToolStripMenuItem
         '
         Me.MettreÀJourToolStripMenuItem.Name = "MettreÀJourToolStripMenuItem"
         Me.MettreÀJourToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
         Me.MettreÀJourToolStripMenuItem.Text = "Mettre à jour"
+        '
+        'ÀProposToolStripMenuItem
+        '
+        Me.ÀProposToolStripMenuItem.Name = "ÀProposToolStripMenuItem"
+        Me.ÀProposToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
+        Me.ÀProposToolStripMenuItem.Text = "À propos"
         '
         'ToolStripSeparator2
         '
@@ -180,6 +219,20 @@ Partial Class tab
         Me.ToolStripButton1.Size = New System.Drawing.Size(28, 28)
         Me.ToolStripButton1.Text = "Y aller"
         '
+        'ToolStripSeparator3
+        '
+        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 31)
+        '
+        'FavoriteButton
+        '
+        Me.FavoriteButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.FavoriteButton.Image = Global.Elektraostog_Solaryl.My.Resources.Resources.Favoris
+        Me.FavoriteButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.FavoriteButton.Name = "FavoriteButton"
+        Me.FavoriteButton.Size = New System.Drawing.Size(40, 28)
+        Me.FavoriteButton.Text = "Favoris"
+        '
         'ImageList1
         '
         Me.ImageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit
@@ -202,12 +255,6 @@ Partial Class tab
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(200, 534)
         Me.Panel1.TabIndex = 2
-        '
-        'ÀProposToolStripMenuItem
-        '
-        Me.ÀProposToolStripMenuItem.Name = "ÀProposToolStripMenuItem"
-        Me.ÀProposToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
-        Me.ÀProposToolStripMenuItem.Text = "À propos"
         '
         'tab
         '
@@ -247,4 +294,10 @@ Partial Class tab
     Friend WithEvents AfficherLesDevToolsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Panel1 As Panel
     Friend WithEvents ÀProposToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ChaîneYouTubeToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CompteInstagramToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents HistoriqueToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
+    Friend WithEvents AjouterAuxFavorisToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents FavoriteButton As ToolStripSplitButton
 End Class

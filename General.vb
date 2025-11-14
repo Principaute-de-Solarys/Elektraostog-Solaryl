@@ -1,7 +1,9 @@
 ﻿Imports System.IO
+Imports System.Environment
 Imports System.Net
 Imports CefSharp
 Imports Elektraostog_Solaryl.tab
+Imports Newtonsoft.Json
 
 Public Module General
     Public TabContentMap As New Dictionary(Of TabPage, Control)
@@ -122,6 +124,35 @@ Public Module General
         End Sub
     End Class
 
+    Public Class HistoryManager
+        Public Function getJSON(path As String) As Object
+            Try
+                If path = "history" Then
+                    If IO.File.Exists(historyFileLoc) Then
+                        Return IO.File.ReadAllText(historyFileLoc)
+                    Else
+                        Return "[]"
+                    End If
+                End If
+            Catch ex As Exception
+                Return "[]"
+            End Try
+
+            Return "[]"
+        End Function
+
+        Public Sub clearJSON(path As String)
+            Try
+                If path = "history" Then
+                    If IO.File.Exists(historyFileLoc) Then
+                        IO.File.Delete(historyFileLoc)
+                    End If
+                End If
+            Catch ex As Exception
+            End Try
+        End Sub
+    End Class
+
     Public Class SolarysSchemeHandlerFactory
         Implements ISchemeHandlerFactory
         Public Function Create(browser As IBrowser, frame As IFrame, schemeName As String, request As IRequest) As IResourceHandler Implements ISchemeHandlerFactory.Create
@@ -132,6 +163,8 @@ Public Module General
                     Return ResourceHandler.FromString(My.Resources.about)
                 ElseIf request.Url.StartsWith("solarys://update/") Then
                     Return ResourceHandler.FromString(My.Resources.update)
+                ElseIf request.Url.StartsWith("solarys://history/") Then
+                    Return ResourceHandler.FromString(My.Resources.history)
                 Else
                     Return ResourceHandler.FromString(My.Resources.notfound)
                 End If
@@ -242,6 +275,17 @@ Public Module General
         End Sub
     End Class
 
+    Public Class HistoryObj
+        Public dateLinked As Date
+        Public name As String
+        Public url As String
+    End Class
+
+    Public Class FavoriteObject
+        Public name As String
+        Public url As String
+    End Class
+
     Public Function GetOSInfo() As String
         Dim os As OperatingSystem = Environment.OSVersion
         Dim osName As String
@@ -294,5 +338,124 @@ Public Module General
             isNeeded = True
         End If
         Return (isNeeded, onlinever)
+    End Function
+
+    Dim ADdirLoc As String = GetFolderPath(SpecialFolder.ApplicationData) & "\Colog danelektrascal\Elektraostog Solaryl"
+    Dim historyFileLoc As String
+    Dim favoriteFileLoc As String
+
+    Public Sub InitAppData()
+        If Not IO.Directory.Exists(ADdirLoc) Then
+            IO.Directory.CreateDirectory(GetFolderPath(SpecialFolder.ApplicationData) & "\Colog danelektrascal")
+            IO.Directory.CreateDirectory(ADdirLoc)
+        End If
+        historyFileLoc = ADdirLoc & "\history.json"
+        favoriteFileLoc = ADdirLoc & "\favorite.json"
+    End Sub
+
+    Public Sub AddToHistory(dateLinked As Date, name As String, url As String)
+        Dim historyObj As New HistoryObj With {
+            .dateLinked = dateLinked,
+            .name = name,
+            .url = url
+        }
+
+        Dim historyList As New List(Of HistoryObj)
+
+        If IO.File.Exists(historyFileLoc) Then
+            Dim existingJson As String = IO.File.ReadAllText(historyFileLoc)
+
+            If Not String.IsNullOrWhiteSpace(existingJson) Then
+                Try
+                    historyList = JsonConvert.DeserializeObject(Of List(Of HistoryObj))(existingJson)
+                Catch ex As Exception
+                    historyList = New List(Of HistoryObj)
+                End Try
+            End If
+        End If
+
+        If historyList.Count > 0 Then
+            Dim lastEntry = historyList.Last()
+
+            Dim delta As TimeSpan = dateLinked - lastEntry.dateLinked
+
+            If lastEntry.url = url AndAlso Math.Abs(delta.TotalSeconds) < 5 Then
+                Exit Sub
+            End If
+        End If
+
+        historyList.Add(historyObj)
+
+        If historyList.Count > 500 Then
+            Dim toRemove As Integer = historyList.Count - 500
+            historyList.RemoveRange(0, toRemove)
+        End If
+
+        Dim newJson As String = JsonConvert.SerializeObject(historyList, Formatting.Indented)
+        IO.File.WriteAllText(historyFileLoc, newJson)
+    End Sub
+
+    Public Sub AddFavorite(name As String, url As String)
+        Dim favoriteObj As New FavoriteObject With {
+            .name = name,
+            .url = url
+        }
+
+        Dim favoriteList As New List(Of FavoriteObject)
+
+        If IO.File.Exists(favoriteFileLoc) Then
+            Dim existingJson As String = IO.File.ReadAllText(favoriteFileLoc)
+
+            If Not String.IsNullOrWhiteSpace(existingJson) Then
+                Try
+                    favoriteList = JsonConvert.DeserializeObject(Of List(Of FavoriteObject))(existingJson)
+                Catch ex As Exception
+                    favoriteList = New List(Of FavoriteObject)
+                End Try
+            End If
+        End If
+
+        favoriteList.Add(favoriteObj)
+
+        Dim newJson As String = JsonConvert.SerializeObject(favoriteList, Formatting.Indented)
+        IO.File.WriteAllText(favoriteFileLoc, newJson)
+    End Sub
+
+    Public Sub RemoveFavorite(url As String)
+        If IO.File.Exists(favoriteFileLoc) Then
+            Dim json As String = IO.File.ReadAllText(favoriteFileLoc)
+            Dim list = JsonConvert.DeserializeObject(Of List(Of FavoriteObject))(json)
+
+            list.RemoveAll(Function(f) f.url.Equals(url))
+
+            Dim newJson = JsonConvert.SerializeObject(list, Formatting.Indented)
+            IO.File.WriteAllText(favoriteFileLoc, newJson)
+        End If
+    End Sub
+
+
+    Public Function LoadFavorite() As Dictionary(Of String, String)
+        Dim result As New Dictionary(Of String, String)
+
+        Try
+            If IO.File.Exists(favoriteFileLoc) Then
+                Dim json As String = IO.File.ReadAllText(favoriteFileLoc)
+
+                If Not String.IsNullOrWhiteSpace(json) Then
+                    Dim favoriteList As List(Of FavoriteObject) = JsonConvert.DeserializeObject(Of List(Of FavoriteObject))(json)
+
+                    If favoriteList IsNot Nothing Then
+                        For Each fav In favoriteList
+                            If Not result.ContainsKey(fav.name) Then
+                                result.Add(fav.name, fav.url)
+                            End If
+                        Next
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+        End Try
+
+        Return result
     End Function
 End Module

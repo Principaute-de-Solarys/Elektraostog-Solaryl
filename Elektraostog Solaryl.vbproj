@@ -37,8 +37,8 @@
     <ProductName>Elektraostog Solaryl</ProductName>
     <PublisherName>Colog danelektrascral</PublisherName>
     <SuiteName>Elektraostog Solaryl</SuiteName>
-    <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>0.1.0.1</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>0.2.0.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -112,6 +112,9 @@
     </Reference>
     <Reference Include="CefSharp.WinForms, Version=141.0.110.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
       <HintPath>packages\CefSharp.WinForms.141.0.110\lib\net462\CefSharp.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -246,6 +249,9 @@
     <None Include="Resources\Max clair.png" />
     <None Include="Resources\Min clair.png" />
     <None Include="Resources\about.html" />
+    <None Include="Resources\history.html" />
+    <None Include="Resources\Favoris clair.png" />
+    <None Include="Resources\Favoris.png" />
     <Content Include="Resources\Min.png" />
     <None Include="Resources\settings.html" />
     <None Include="Resources\notfound.html" />
