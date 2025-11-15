@@ -38,7 +38,7 @@
     <PublisherName>Colog danelektrascral</PublisherName>
     <SuiteName>Elektraostog Solaryl</SuiteName>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>0.2.0.0</ApplicationVersion>
+    <ApplicationVersion>0.2.1.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -243,6 +243,29 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Elektraostog-Solaryl.ico" />
+    <None Include="Resources\NDiscord.png" />
+    <None Include="Resources\NWebSite.png" />
+    <None Include="Resources\NYouTube.png" />
+    <None Include="Resources\NInstagram.png" />
+    <None Include="Resources\NBack.png" />
+    <None Include="Resources\NForwards.png" />
+    <None Include="Resources\NRefresh.png" />
+    <None Include="Resources\NAddFavorite.png" />
+    <None Include="Resources\NNewPage.png" />
+    <None Include="Resources\NClosePage.png" />
+    <None Include="Resources\NDevTools.png" />
+    <None Include="Resources\NSolarys.png" />
+    <None Include="Resources\NSettings.png" />
+    <None Include="Resources\NHistory.png" />
+    <None Include="Resources\NUpdate.png" />
+    <None Include="Resources\NAbout.png" />
+    <None Include="Resources\NMinn.png" />
+    <None Include="Resources\NMin.png" />
+    <None Include="Resources\NMax.png" />
+    <None Include="Resources\NY_Aller.png" />
+    <None Include="Resources\NPage.png" />
+    <None Include="Resources\NFavoris.png" />
+    <None Include="Resources\NExit.png" />
     <None Include="Resources\update.html" />
     <None Include="Resources\Minn clair.png" />
     <None Include="Resources\Exit clair.png" />

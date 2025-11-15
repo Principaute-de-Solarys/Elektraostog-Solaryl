@@ -175,4 +175,73 @@
   <data name="history" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\history.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="NAbout" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NAbout.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NAddFavorite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NAddFavorite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NBack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NBack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NClosePage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NClosePage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NDevTools" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NDevTools.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NDiscord" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NDiscord.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NExit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NExit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NFavoris" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NFavoris.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NForwards" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NForwards.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NHistory" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NHistory.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NInstagram" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NInstagram.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NMax" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NMax.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NMin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NMin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NMinn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NMinn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NNewPage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NNewPage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NPage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NPage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NRefresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NRefresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NSettings" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NSettings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NSolarys" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NSolarys.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NUpdate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NUpdate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NWebSite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NWebSite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NYouTube" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NYouTube.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NY_Aller" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NY_Aller.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

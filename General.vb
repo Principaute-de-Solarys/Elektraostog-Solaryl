@@ -97,14 +97,16 @@ Public Module General
             Return New With {
                 .darkmode = My.Settings.darkmode,
                 .homepage = My.Settings.homepage,
-                .searchengine = My.Settings.searchengine
+                .searchengine = My.Settings.searchengine,
+                .theme = My.Settings.theme
             }
         End Function
 
-        Public Sub saveSettings(darkmode As Boolean, homepage As String, searchengine As String)
+        Public Sub saveSettings(darkmode As Boolean, homepage As String, searchengine As String, theme As String)
             My.Settings.darkmode = darkmode
             My.Settings.homepage = homepage
             My.Settings.searchengine = searchengine
+            My.Settings.theme = theme
             My.Settings.Save()
         End Sub
     End Class

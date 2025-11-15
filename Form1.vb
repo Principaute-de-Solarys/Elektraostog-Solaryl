@@ -8,11 +8,17 @@ Public Class ElektraostogSolaryl
     Private Sub ElektraostogSolaryl_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         InitAppData()
         PictureBox1.BackColor = _BackColor
-        PictureBox1.Image = If(My.Settings.darkmode, My.Resources._Exit, My.Resources.Exit_clair)
         PictureBox2.BackColor = _BackColor
-        PictureBox2.Image = If(My.Settings.darkmode, My.Resources.Max, My.Resources.Max_clair)
         PictureBox3.BackColor = _BackColor
-        PictureBox3.Image = If(My.Settings.darkmode, My.Resources.minimize, My.Resources.Minn_clair)
+        If My.Settings.theme = "New" Then
+            PictureBox1.Image = My.Resources.NExit
+            PictureBox2.Image = My.Resources.NMax
+            PictureBox3.Image = My.Resources.NMinn
+        Else
+            PictureBox1.Image = If(My.Settings.darkmode, My.Resources._Exit, My.Resources.Exit_clair)
+            PictureBox2.Image = If(My.Settings.darkmode, My.Resources.Max, My.Resources.Max_clair)
+            PictureBox3.Image = If(My.Settings.darkmode, My.Resources.minimize, My.Resources.Minn_clair)
+        End If
         Dim settings As New CefSettings
         settings.RemoteDebuggingPort = 8080
         settings.Locale = "fr-FR"
@@ -154,15 +160,19 @@ Public Class ElektraostogSolaryl
 
     Private Sub PictureBox1_MouseEnter(sender As Object, e As EventArgs) Handles PictureBox1.MouseEnter
         PictureBox1.BackColor = XButtonSelectedColor
-        If Not My.Settings.darkmode Then
-            PictureBox1.Image = My.Resources._Exit
+        If My.Settings.theme = "Default" Then
+            If Not My.Settings.darkmode Then
+                PictureBox1.Image = My.Resources._Exit
+            End If
         End If
     End Sub
 
     Private Sub PictureBox1_MouseLeave(sender As Object, e As EventArgs) Handles PictureBox1.MouseLeave
         PictureBox1.BackColor = _BackColor
-        If Not My.Settings.darkmode Then
-            PictureBox1.Image = My.Resources.Exit_clair
+        If My.Settings.theme = "Default" Then
+            If Not My.Settings.darkmode Then
+                PictureBox1.Image = My.Resources.Exit_clair
+            End If
         End If
     End Sub
 
@@ -197,12 +207,20 @@ Public Class ElektraostogSolaryl
             Me.Size = New Point(My.Computer.Screen.WorkingArea.Width, My.Computer.Screen.WorkingArea.Height)
             Me.Location = New Point(0, 0)
             fullScreen = True
-            PictureBox2.Image = If(My.Settings.darkmode, My.Resources.Min, My.Resources.Min_clair)
+            If My.Settings.theme = "New" Then
+                PictureBox2.Image = My.Resources.NMin
+            Else
+                PictureBox2.Image = If(My.Settings.darkmode, My.Resources.Min, My.Resources.Min_clair)
+            End If
         Else
             Me.Size = normalSize
             Me.Location = normalPos
             fullScreen = False
-            PictureBox2.Image = If(My.Settings.darkmode, My.Resources.Max, My.Resources.Max_clair)
+            If My.Settings.theme = "New" Then
+                PictureBox2.Image = My.Resources.NMax
+            Else
+                PictureBox2.Image = If(My.Settings.darkmode, My.Resources.Max, My.Resources.Max_clair)
+            End If
         End If
     End Sub
 

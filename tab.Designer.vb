@@ -146,25 +146,25 @@ Partial Class tab
         'ServeurDiscordToolStripMenuItem
         '
         Me.ServeurDiscordToolStripMenuItem.Name = "ServeurDiscordToolStripMenuItem"
-        Me.ServeurDiscordToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.ServeurDiscordToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ServeurDiscordToolStripMenuItem.Text = "Serveur Discord"
         '
         'SiteToolStripMenuItem
         '
         Me.SiteToolStripMenuItem.Name = "SiteToolStripMenuItem"
-        Me.SiteToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.SiteToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.SiteToolStripMenuItem.Text = "Site"
         '
         'ChaîneYouTubeToolStripMenuItem
         '
         Me.ChaîneYouTubeToolStripMenuItem.Name = "ChaîneYouTubeToolStripMenuItem"
-        Me.ChaîneYouTubeToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.ChaîneYouTubeToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ChaîneYouTubeToolStripMenuItem.Text = "Chaîne YouTube"
         '
         'CompteInstagramToolStripMenuItem
         '
         Me.CompteInstagramToolStripMenuItem.Name = "CompteInstagramToolStripMenuItem"
-        Me.CompteInstagramToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.CompteInstagramToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.CompteInstagramToolStripMenuItem.Text = "Compte Instagram"
         '
         'ParamètresToolStripMenuItem

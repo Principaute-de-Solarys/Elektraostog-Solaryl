@@ -208,9 +208,31 @@ Public Class tab
     End Sub
 
     Private Sub tab_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        PageTSSB.Image = If(My.Settings.darkmode, My.Resources.page_sombre, My.Resources.page_clair)
-        ToolStripButton1.Image = If(My.Settings.darkmode, My.Resources.y_aller_sombre, My.Resources.y_aller_clair)
-        FavoriteButton.Image = If(My.Settings.darkmode, My.Resources.Favoris, My.Resources.Favoris_clair)
+        If My.Settings.theme = "New" Then
+            PageTSSB.Image = My.Resources.NPage
+            ToolStripButton1.Image = My.Resources.NY_Aller
+            FavoriteButton.Image = My.Resources.NFavoris
+            RevenirEnArrièreToolStripMenuItem.Image = My.Resources.NBack
+            RevenirEnAvantToolStripMenuItem.Image = My.Resources.NForwards
+            RafraîchirToolStripMenuItem.Image = My.Resources.NRefresh
+            AjouterAuxFavorisToolStripMenuItem.Image = My.Resources.NAddFavorite
+            NouvellePageToolStripMenuItem.Image = My.Resources.NNewPage
+            FermerLaPageToolStripMenuItem.Image = My.Resources.NClosePage
+            AfficherLesDevToolsToolStripMenuItem.Image = My.Resources.NDevTools
+            RevenirSurSolarysToolStripMenuItem.Image = My.Resources.NSolarys
+            ParamètresToolStripMenuItem.Image = My.Resources.NSettings
+            HistoriqueToolStripMenuItem.Image = My.Resources.NHistory
+            MettreÀJourToolStripMenuItem.Image = My.Resources.NUpdate
+            ÀProposToolStripMenuItem.Image = My.Resources.NAbout
+            ServeurDiscordToolStripMenuItem.Image = My.Resources.NDiscord
+            SiteToolStripMenuItem.Image = My.Resources.NWebSite
+            ChaîneYouTubeToolStripMenuItem.Image = My.Resources.NYouTube
+            CompteInstagramToolStripMenuItem.Image = My.Resources.NInstagram
+        Else
+            PageTSSB.Image = If(My.Settings.darkmode, My.Resources.page_sombre, My.Resources.page_clair)
+            ToolStripButton1.Image = If(My.Settings.darkmode, My.Resources.y_aller_sombre, My.Resources.y_aller_clair)
+            FavoriteButton.Image = If(My.Settings.darkmode, My.Resources.Favoris, My.Resources.Favoris_clair)
+        End If
         ChromiumWebBrowser1.Dock = DockStyle.Fill
         Panel1.Dock = DockStyle.Right
         Panel1.Hide()
@@ -437,10 +459,6 @@ Public Class tab
         ChromiumWebBrowser1.LoadUrl("solarys://update/")
     End Sub
 
-    Private Sub ToolStrip1_Resize(sender As Object, e As EventArgs) Handles ToolStrip1.Resize
-        ToolStripTextBox1.Size = New Point(ToolStrip1.Width - 195, ToolStripTextBox1.Height)
-    End Sub
-
     Private Sub ServeurDiscordToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ServeurDiscordToolStripMenuItem.Click
         ChromiumWebBrowser1.Load("https://discord.com/channels/1257704920526618766/1257704921650954303")
     End Sub
@@ -484,6 +502,7 @@ Public Class tab
     End Sub
 
     Private Sub tab_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
+        ToolStripTextBox1.Size = New Point(ToolStrip1.Width - 195, ToolStripTextBox1.Height)
         If devTools Then
             Panel1.Width = Math.Round(Me.Width * 0.4)
             ChromiumWebBrowser1.Width = Math.Round(Me.Width * 0.6)

@@ -120,6 +120,14 @@
         </select>
     </div>
 
+    <div class="setting">
+        <label for="theme">Thème</label>
+        <select id="theme">
+            <option value="Default">Par défaut</option>
+            <option value="New">Nouveau</option>
+        </select>
+    </div>
+
     <button onclick="saveSettings()">Enregistrer</button>
 
     <footer>Elektraostog Solaryl</footer>
@@ -132,6 +140,7 @@
                 document.getElementById("darkmode").checked = data.darkmode;
                 document.getElementById("homepage").value = data.homepage;
                 document.getElementById("searchEngine").value = data.searchengine;
+                document.getElementById("theme").value = data.theme;
             }
         });
 
@@ -139,9 +148,10 @@
             const darkmode = document.getElementById("darkmode").checked
             const homepage = document.getElementById("homepage").value
             const searchengine = document.getElementById("searchEngine").value
+            const theme = document.getElementById("theme").value
 
             if (window.solarysSettings && window.solarysSettings.saveSettings) {
-                solarysSettings.saveSettings(darkmode, homepage, searchengine);
+                solarysSettings.saveSettings(darkmode, homepage, searchengine, theme);
                 alert("Paramètres enregistrés ! Vous devez redémarrer Elektraostog Solaryl pour appliquer les changements.");
             } else {
                 alert("Impossible d'enregistrer : interface manquante côté navigateur.");
