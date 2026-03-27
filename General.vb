@@ -155,6 +155,16 @@ Public Module General
         End Sub
     End Class
 
+    Public CodeErreur As String = "ErrorCodeNotLoaded"
+
+    Public Class ErrorPageManager
+        Public Function getErrorCode() As Object
+            Return New With {
+                .errorCode = CodeErreur
+            }
+        End Function
+    End Class
+
     Public Class SolarysSchemeHandlerFactory
         Implements ISchemeHandlerFactory
         Public Function Create(browser As IBrowser, frame As IFrame, schemeName As String, request As IRequest) As IResourceHandler Implements ISchemeHandlerFactory.Create

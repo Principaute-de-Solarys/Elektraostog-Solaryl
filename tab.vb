@@ -176,7 +176,7 @@ Public Class tab
     Private Sub CheckLink()
         If ToolStripTextBox1.Text = "" Then
             MsgBox("Veuillez mettre une URL")
-        ElseIf Regex.IsMatch(ToolStripTextBox1.Text, patt) OrElse ToolStripTextBox1.Text.StartsWith("chrome://") OrElse ToolStripTextBox1.Text.StartsWith("solarys://") Then
+        ElseIf Regex.IsMatch(ToolStripTextBox1.Text, patt) OrElse ToolStripTextBox1.Text.StartsWith("file:///") OrElse ToolStripTextBox1.Text.StartsWith("chrome://") OrElse ToolStripTextBox1.Text.StartsWith("solarys://") Then
             ChromiumWebBrowser1.Load(ToolStripTextBox1.Text)
         Else
             ChromiumWebBrowser1.Load(My.Settings.searchengine & ToolStripTextBox1.Text)
@@ -239,6 +239,7 @@ Public Class tab
         ChromiumWebBrowser1.JsDialogHandler = New SolarysJsDialogHandler
         ChromiumWebBrowser1.LifeSpanHandler = New SolarysLifeSpanHandler(AddressOf AjouterNouvelOnglet)
         ChromiumWebBrowser1.MenuHandler = New SolarysContextMenuHandler(AddressOf AjouterNouvelOnglet, AddressOf ShowDevTools)
+        ChromiumWebBrowser1.JavascriptObjectRepository.Register("solarysErrorPage", New ErrorPageManager(), isAsync:=True)
         ChromiumWebBrowser1.Load(TargetUrl)
         ToolStrip1.BackColor = _BackColor
         ToolStrip1.ForeColor = TextColor
@@ -443,7 +444,8 @@ Public Class tab
 
     Private Sub ChromiumWebBrowser1_LoadError(sender As Object, e As LoadErrorEventArgs) Handles ChromiumWebBrowser1.LoadError
         If Not e.ErrorText = "ERR_ABORTED" Then
-            MessageBox.Show("Une erreur est survenue lors du chargement de la page : " & e.ErrorText, "Erreur de chargement", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            CodeErreur = e.ErrorText
+            ChromiumWebBrowser1.LoadHtml(My.Resources.notfound, e.FailedUrl)
         End If
     End Sub
 

@@ -19,9 +19,10 @@ Il s'agit d'un navigateur basé sur **Chromium**, avec une interface **WinForms 
 - **Système d'onglets** : gestion complète des onglets (c'est plus dur que ça en a l'air).
 - **Système de favoris** : pour mettre en favori tes pages préférées.
 - **Moteurs de recherche supportés** :
-  - Par défaut : **Google**
-  - En option : **DuckDuckGo, Qwant, Bing, Yahoo**
+  - Par défaut : **DuckDuckGo**
+  - En option : **Google, Qwant, Bing, Yahoo**
 - **Thèmes** : sombre (par défaut) et clair.
+- **Icônes** : Visual Studio like (par défaut) et simple.
 - **Interface retravaillée** : c'est basé sur WinForms, mais avec une interface qu'on a essayé de retravailler (au mieux).
 
 ## Fonctionnalités prévues
@@ -35,7 +36,6 @@ Il s'agit d'un navigateur basé sur **Chromium**, avec une interface **WinForms 
 | Restauration de session | 🟠 Possible | Sera ajouté si demandé |
 | Mode privé | ⚫ Lointain | Vraiment pas prioritaire |
 | Filtre de contenu / sécurité avancée | ⚫ Lointain | Non prévu pour l'instant |
-| Mode hors ligne | 🔴 Non fonctionnel | Bientôt corrigé |
 
 Si vous avez d'autres suggestions, dites le moi !
 

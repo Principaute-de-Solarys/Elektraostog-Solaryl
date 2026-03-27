@@ -80,7 +80,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("https://www.google.com/search?q=")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("https://duckduckgo.com/?q=")>  _
         Public Property searchengine() As String
             Get
                 Return CType(Me("searchengine"),String)
@@ -92,7 +92,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Default")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("New")>  _
         Public Property theme() As String
             Get
                 Return CType(Me("theme"),String)

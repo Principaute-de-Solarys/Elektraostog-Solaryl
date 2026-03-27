@@ -20,7 +20,8 @@ Public Class ElektraostogSolaryl
             PictureBox3.Image = If(My.Settings.darkmode, My.Resources.minimize, My.Resources.Minn_clair)
         End If
         Dim settings As New CefSettings
-        settings.RemoteDebuggingPort = 8080
+        settings.CefCommandLineArgs.Add("allow-file-access-from-files")
+        settings.CefCommandLineArgs.Add("allow-universal-access-from-files")
         settings.Locale = "fr-FR"
         settings.EnablePrintPreview()
         settings.AcceptLanguageList = "fr-FR,fr,en-US,en"

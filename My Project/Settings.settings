@@ -9,10 +9,10 @@
       <Value Profile="(Default)">solarys://about/</Value>
     </Setting>
     <Setting Name="searchengine" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://www.google.com/search?q=</Value>
+      <Value Profile="(Default)">https://duckduckgo.com/?q=</Value>
     </Setting>
     <Setting Name="theme" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Default</Value>
+      <Value Profile="(Default)">New</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Erreur 404 - Page introuvable</title>
+    <title>Erreur de chargement - Page inaccessible</title>
     <style>
         body {
             font-family: "Segoe UI", Arial, sans-serif;
@@ -72,14 +72,22 @@
     </style>
 </head>
 <body>
-    <h1>Erreur 404</h1>
+    <h1>Erreur de chargement</h1>
     <p>La page demandée n'existe pas ou a été déplacée.</p>
     <p>URL : <span id="page" class="url"></span></p>
+    <p>Code d'erreur : <span id="code" class="url"></span></p>
     <button onclick="window.history.back()">Retour à la page précédente</button>
     <footer>Elektraostog Solaryl</footer>
 
     <script>
-        document.getElementById("page").textContent = window.location.href
+        document.addEventListener("DOMContentLoaded", async () => {
+            await CefSharp.BindObjectAsync("solarysErrorPage");
+            if (window.solarysErrorPage && window.solarysErrorPage.getErrorCode) {
+                const data = await solarysErrorPage.getErrorCode();
+                document.getElementById("page").textContent = window.location.href
+                document.getElementById("code").textContent = data.errorCode
+            }
+        });
     </script>
 </body>
 </html>
